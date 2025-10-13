@@ -5,7 +5,7 @@ import InventoryPage from "./pages/InventoryPage";
 // import QuestPage from "./pages/QuestPage";
 // import BattlePage from "./pages/BattlePage";
 // import VictoryPage from "./pages/VictoryPage";
-// import FailPage from "./pages/FailPage";
+// import FailPage from "./pages/FailurePage";
 // import EndPage from "./pages/EndPage";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         {/* <Route path="/quete" element={<QuestPage />} /> */}
         {/* <Route path="/combat" element={<BattlePage />} /> */}
         {/* <Route path="/victoire" element={<VictoryPage />} /> */}
-        {/* <Route path="/echec" element={<FailPage />} /> */}
+        {/* <Route path="/echec" element={<FailurePage />} /> */}
         {/* <Route path="/fin" element={<EndPage />} /> */}
       </Routes>
     </BrowserRouter>

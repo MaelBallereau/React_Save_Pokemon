@@ -4,7 +4,7 @@
 export default function InventoryPage() {
   return (
     <>
-      <div className="title">
+      <div className="titles">
         <h1>Inventaire</h1>
       </div>
       <div className="pannel">
