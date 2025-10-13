@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router";
 
-import { BrowserRouter } from "react-router";
-import "./App.css";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <BrowserRouter>
-      <HomePage />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/inventaire" element={<HomePage />} />
+        <Route path="/quete" element={<HomePage />} />
+        <Route path="/combat" element={<HomePage />} />
+        <Route path="/victoire" element={<HomePage />} />
+        <Route path="/echec" element={<HomePage />} />
+        <Route path="/fin" element={<HomePage />} />
+      </Routes>
     </BrowserRouter>
   );
 }
