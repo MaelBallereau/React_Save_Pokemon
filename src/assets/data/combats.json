@@ -1,0 +1,18 @@
+[
+  {
+    "questId": 1,
+    "enemies": [{ "name": "Rattata", "quantity": 3 }]
+  },
+  {
+    "questId": 2,
+    "enemies": [{ "name": "Osselait", "quantity": 3 }]
+  },
+  {
+    "questId": 3,
+    "enemies": [{ "name": "Ectoplasma", "quantity": 1 }]
+  },
+  {
+    "questId": 4,
+    "enemies": [{ "name": "Mewtwo", "quantity": 1 }]
+  }
+]
