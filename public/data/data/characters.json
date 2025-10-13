@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "name": "Bulbizarre",
+    "class": "Graine",
+    "picture": "bulbizarre.png",
+    "health": 450,
+    "healthMax": 450,
+    "mana": 200,
+    "manaMax": 200,
+    "damage": 65,
+    "defense": 65,
+    "fortune": 75,
+    "spell": {
+      "name": "Fouet Lianes",
+      "target": "enemy",
+      "effect": "damage",
+      "amount": 45,
+      "manaCost": 25
+    }
+    
+  },
+  {
+    "id": 2,
+    "name": "Salamèche",
+    "class": "Lézard",
+    "picture": "salamèche.png",
+    "health": 390,
+    "healthMax": 390,
+    "mana": 200,
+    "manaMax": 200,
+    "damage": 8,
+    "defense": 8,
+    "fortune": 200,
+    "spell": {
+      "name": "Flammèche",
+      "target": "enemy",
+      "effect": "damage",
+      "amount": 40,
+      "manaCost": 25
+    }
+  },
+  {
+    "id": 3,
+    "name": "Carapuce",
+    "class": "Minitortue",
+    "picture": "carapuce.png",
+    "health": 440,
+    "healthMax": 440,
+    "mana": 200,
+    "manaMax": 200,
+    "damage": 49,
+    "defense": 65,
+    "fortune": 150,
+    "spell": {
+      "name": "Pistolet à O",
+      "target": "enemy",
+      "effect": "damage",
+      "amount": 40,
+      "manaCost": 25
+    }
+  },
+  {
+    "id": 4,
+    "name": "Germignon",
+    "class": "Feuille",
+    "picture": "germignon.png",
+    "health": 450,
+    "healthMax": 450,
+    "mana": 200,
+    "manaMax": 200,
+    "damage": 49,
+    "defense": 65,
+    "fortune": 250,
+    "spell": {
+      "name": "Tranch'Herbe",
+      "target": "enemy",
+      "effect": "damage",
+      "amount": 55,
+      "manaCost": 35
+    }
+  }
+]

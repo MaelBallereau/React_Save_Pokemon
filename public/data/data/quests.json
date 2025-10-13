@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Au début",
+    "description": "Un matin, Pikachu a décidé d’aller se promener dans les hautes herbes. Pourquoi&nbsp;? Personne ne sait. Certains pensent qu’il cherchait une baie pour manger, d’autres qu'il fuyait un dresseur pokémon. Toujours est-il qu'il n'est jamais revenu… Et maintenant, les rattata ont doublé leurs attaques et poussent des cris bizarre et bruyante, ils parlent à tout le monde avec un accent étrange et des mots terribles comme &laquo;Yo&raquo;, &laquo;Bro&raquo; ou autres &laquo;Wesh&raquo;. En plus de ça, ils refusent désormais de payer leur loyer. Il va falloir aller faire le ménage chez ces rattata sans peur. Et ramener Pikachu tant que vous y êtes.",
+    "objective": "Combattre un groupe de gros rattata",
+    "reward": {
+      "gold": 50
+    },
+    "clue": "Un des rattata portait un collier en os gravé &laquo;Propriété des Osselait S.A.&raquo;. Et dans sa gueule, un morceau de crâne resemblant à un osselait. Conclusion&nbsp;? Les Osselait sont passés par là et ont volé Pikachu aux Rattata. Business as usual."
+  },
+  {
+    "id": 2,
+    "title": "Et après",
+    "description": "Les osselait sont installés dans une grotte pas très loin du château, probablement parce qu’ils ont le flair pour l’immobilier abordable. Ils sortent la nuit, pètent les lanternes publiques, crient dans les puits et volent les dentiers des vieillards endormis. Bref, ils sont chiants. Pire&nbsp;:&nbsp;ils ont capturé des marchands et exigent une taxe de passage payable en jambons et cailloux polis. Pas de doute&nbsp;:&nbsp;ce sont eux les ravisseurs de Pikachu. Il faut aller les corriger.",
+    "objective": "Combattre un groupe de trois osselait lourds",
+    "reward": {
+      "gold": 150
+    },
+    "clue": "Dans la poche du chef gobelin, vous trouvez une lettre mal orthographiée signée &laquo;Ectoplasma&raquo;, avec un dessin d’un fantôme qui sourit. Il y est question de &laquo;livraison rapide de Pikachu contre paiement&raquo;. Tout porte à croire que l'Ectoplasma est derrière cette magouille inter-espèces et anti-Pikachu…"
+  },
+  {
+    "id": 3,
+    "title": "Ça se corse",
+    "description": "L'Ectoplasma s’est installé dans un vieux labyrinthe en ruines et l’a transformé en temple IKEA&nbsp;:&nbsp;tout se ressemble, il manque des pièces et personne n’en sort vivant. On raconte qu’il a mangé trois marchands, un cheval et une chèvre, mais qu’il a épargné un roucool voyageur qui lui livrait du fromage. Autant dire que ce n’est pas un fantôme de fiabilité. Heureusement pour vous, un fil de laine est accroché au mur, et il mène directement vers la chambre de Ectoplasma.",
+    "objective": "Combattre Ectoplasma",
+    "reward": {
+      "gold": 300
+    },
+    "clue": "Au moment de mourir, l'Ectoplasma a haleté&nbsp;:&nbsp;&laquo;Le Legendaire… il est trop fort… je lui ai montré… il l’a pris…&raquo; avant de s’éteindre dans une flaque de bouse mystique. Il parlait évidemment de Pikachu. Et du legendaire Mewtwo, ce vieux pokémon génétique, pourtant gentil, mais tellement possessif."
+  },
+  {
+    "id": 4,
+    "title": "Libération",
+    "description": "Le legendaire Mewtwo vit dans une tour trop petite pour lui, ce qui explique son humeur massacrante et la médiocrité des décorations intérieures. Il joue du luth, écrit des poèmes, collectionne les bougies parfumées, mais refuse catégoriquement de libérer la pikachu. Il affirme que c’est &laquo;pour son bien&raquo;. Pikachu, quant à lui, n'aime pas la musique. Il se plaint que la tour n'a pas de cuisine, qu'il commence à sentir mauvais et que son poil deviens gras. Bref, il faut le délivrer de toute urgence.",
+    "objective": "Combattre Mewtwo et libérer Pikachu",
+    "reward": {
+      "gold": 1000
+    },
+    "clue": "Pikachu vous accueille avec un soupir d’agacement, vous traite de lent, crache sur vos pattes (par accident, sans doute), vous file un coup de jus et s’en va en disant&nbsp;:&nbsp;&laquo;Bon, on se retrouve au au bourg pallete, j’espère que t’as de la bouffe.&raquo; Fin de l’aventure&nbsp;? Peut-être. Début des problèmes&nbsp;? C’est sûr."
+  }
+]
