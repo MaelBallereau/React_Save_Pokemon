@@ -1,0 +1,12 @@
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 2rem;
+  img {
+    width: 400px;
+    height: 140px;
+    object-fit: cover;
+  }
+}
