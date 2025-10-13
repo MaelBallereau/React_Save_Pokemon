@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Rattata",
+    "picture": "rattata.png",
+    "health": 300,
+    "mana": 0,
+    "damage": 40,
+    "defense": 35
+  },
+  {
+    "name": "Osselait",
+    "picture": "osselait.png",
+    "health": 500,
+    "mana": 0,
+    "damage": 50,
+    "defense": 70
+  },
+  {
+    "name": "Ectoplasma",
+    "picture": "ectoplasma.png",
+    "health": 600,
+    "mana": 0,
+    "damage": 90,
+    "defense": 70
+  },
+  {
+    "name": "Mewtwo",
+    "picture": "mewtwo.png",
+    "health": 1060,
+    "mana": 200,
+    "damage": 120,
+    "defense": 90,
+    "spell": {
+      "name": "Psyko",
+      "effect": "damage",
+      "target": "enemy",
+      "amount": 90,
+      "manaCost": 50
+    }
+  }
+]
