@@ -18,7 +18,7 @@ const HomePage = () => {
             (
               <CharacterCard
                 key={character.id}
-                avatar={character.picture}
+                avatar={`/img/${character.picture}`}
                 firstname={character.name}
                 race={character.class}
                 health={character.health}
