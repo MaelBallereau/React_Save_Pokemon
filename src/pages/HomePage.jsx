@@ -2,6 +2,8 @@ import "../../public/styles/HomePage/styles.scss";
 import CharacterCard from "../components/HomePage/CharacterCard";
 import characters from "../../public/data/characters.json";
 import { useState, useEffect } from "react";
+import TitleHomePages from "../components/HomePage/TitleHomePages";
+import ButtonHomePage from "../components/HomePage/ButtonHomePage";
 const HomePage = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -18,22 +20,15 @@ const HomePage = () => {
 
   const handleStart = () => {
     if (selectedCharacter) {
-      window.location.href = "/quetes";
+      window.location.href = "/quete";
     } else {
-      setErrorMessage("Vous devez selectionnée un Pokemon");
+      setErrorMessage("Vous devez selectionnée un Pokémon");
     }
   };
 
   return (
     <>
-      <div className="title-HomePage">
-        <img
-          className="title-img"
-          src="public/img/title_pokemon.png"
-          alt="Pokemon title"
-        />
-        <h2 className="title-text">Choisir votre Pokemon</h2>
-      </div>
+      <TitleHomePages />
       <div className="content">
         {characters.map((character) => (
           <CharacterCard
@@ -52,19 +47,11 @@ const HomePage = () => {
           />
         ))}
       </div>
-      <div className="button-HomePage">
-        {selectedCharacter && (
-          <p>
-            {selectedCharacter
-              ? `Vous avez choisi ${selectedCharacter.name}`
-              : ""}
-          </p>
-        )}
-        <button onClick={handleStart}>Commencer</button>
-        <p className={`error-message ${errorMessage ? "" : "hidden"}`}>
-          {errorMessage || "\u00A0"}
-        </p>
-      </div>
+      <ButtonHomePage
+        errorMessage={errorMessage}
+        selectedCharacter={selectedCharacter}
+        handleStart={handleStart}
+      />
     </>
   );
 };
