@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import InventoryPage from "./pages/InventoryPage";
 import FailurePage from "./pages/FailurePage"; 
 
+
 function App() {
   return (
     <BrowserRouter>

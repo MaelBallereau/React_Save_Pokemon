@@ -8,9 +8,14 @@ export default function CharacterCard({
   defense,
   money,
   spells,
+  onClick,
+  isSelected,
 }) {
   return (
-    <div className="character-card">
+    <div
+      className={`character-card ${isSelected ? "selected" : ""}`}
+      onClick={onClick}
+    >
       <div className="icon-character">
         <img src={avatar} alt="Avatar" />
       </div>
@@ -32,9 +37,8 @@ export default function CharacterCard({
           <li>
             <strong>🛡️ Défense :</strong> {defense}
           </li>
-          <li className="money">
-            <img src="/img/PokeDollard.png" alt="Money" />
-            <span>{money}</span>
+          <li >
+            <strong className="money"><img className="money-img" src="/img/money.png"/> Money :</strong> {money}
           </li>
         </ul>
       </div>
