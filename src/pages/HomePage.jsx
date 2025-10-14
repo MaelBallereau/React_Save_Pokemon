@@ -1,10 +1,10 @@
 import "../../public/styles/HomePage/styles.scss";
 import CharacterCard from "../components/HomePage/CharacterCard";
-
+import characters from "../../public/data/characters.json";
 const HomePage = () => {
   return (
     <>
-      <div className="title">
+      <div className="title-HomePage">
         <img
           className="title-img"
           src="public/img/title_pokemon.png"
@@ -13,7 +13,24 @@ const HomePage = () => {
         <h2 className="title-text">Choisir votre Pokemon</h2>
       </div>
       <div className="content">
-        <CharacterCard avatar="/public/img/bravhilde-briseflamme.png" firstname="Bravhilde" lastname="Briseflamme" race="Guerrière Humaine" health="180" energy="0" attack="18" defense="30" money="0" />
+        {characters.map(
+          (character) => (
+            (
+              <CharacterCard
+                key={character.id}
+                avatar={character.picture}
+                firstname={character.name}
+                race={character.class}
+                health={character.health}
+                energy={character.mana}
+                attack={character.damage}
+                defense={character.defense}
+                money={character.fortune}
+                spells={character.spell ? [character.spell] : []}
+              />
+            )
+          )
+        )}
       </div>
     </>
   );
