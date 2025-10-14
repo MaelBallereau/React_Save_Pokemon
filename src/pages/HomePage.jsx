@@ -27,7 +27,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <section>
       <TitleHomePages />
       <div className="content">
         {characters.map((character) => (
@@ -52,7 +52,7 @@ const HomePage = () => {
         selectedCharacter={selectedCharacter}
         handleStart={handleStart}
       />
-    </>
+    </section>
   );
 };
 
