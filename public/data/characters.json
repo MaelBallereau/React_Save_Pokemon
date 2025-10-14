@@ -28,8 +28,8 @@
     "healthMax": 390,
     "mana": 200,
     "manaMax": 200,
-    "damage": 8,
-    "defense": 8,
+    "damage": 50,
+    "defense": 50,
     "fortune": 200,
     "spell": {
       "name": "Flammèche",
