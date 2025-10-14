@@ -1,18 +1,24 @@
 import { Routes, Route, BrowserRouter } from "react-router";
 
 import HomePage from "./pages/HomePage";
+import InventoryPage from "./pages/InventoryPage";
+// import QuestPage from "./pages/QuestPage";
+// import BattlePage from "./pages/BattlePage";
+// import VictoryPage from "./pages/VictoryPage";
+// import FailPage from "./pages/FailurePage";
+// import EndPage from "./pages/EndPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/inventaire" element={<HomePage />} />
-        <Route path="/quete" element={<HomePage />} />
-        <Route path="/combat" element={<HomePage />} />
-        <Route path="/victoire" element={<HomePage />} />
-        <Route path="/echec" element={<HomePage />} />
-        <Route path="/fin" element={<HomePage />} />
+        <Route path="/inventaire" element={<InventoryPage />} />
+        {/* <Route path="/quete" element={<QuestPage />} /> */}
+        {/* <Route path="/combat" element={<BattlePage />} /> */}
+        {/* <Route path="/victoire" element={<VictoryPage />} /> */}
+        {/* <Route path="/echec" element={<FailurePage />} /> */}
+        {/* <Route path="/fin" element={<EndPage />} /> */}
       </Routes>
     </BrowserRouter>
   );
