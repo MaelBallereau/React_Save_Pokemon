@@ -1,5 +1,5 @@
 @use "../../variable.scss" as *;
-section {
+.section-HomePage {
   overflow: hidden;
   .title-HomePage {
     display: flex;
@@ -15,7 +15,7 @@ section {
     }
   }
 
-  .content {
+  .content-HomePage {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;

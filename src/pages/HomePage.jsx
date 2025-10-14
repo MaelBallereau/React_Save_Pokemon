@@ -27,9 +27,9 @@ const HomePage = () => {
   };
 
   return (
-    <section>
+    <section className="section-HomePage">
       <TitleHomePages />
-      <div className="content">
+      <div className="content-HomePage">
         {characters.map((character) => (
           <CharacterCard
             key={character.id}
