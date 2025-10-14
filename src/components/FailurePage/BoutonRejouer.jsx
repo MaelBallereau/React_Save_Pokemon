@@ -1,7 +1,7 @@
 export default function BoutonRejouer() {
     return (
-        <div className="bouton-rejouer">
-            <a href="/"><button>Rejouer</button></a>
-        </div>
-    )  
+        <button className="bouton-rejouer" onClick={() => window.location.href = "/"}>
+            ← Rejouer
+        </button>
+    )
 }

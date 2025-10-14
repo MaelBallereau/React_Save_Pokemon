@@ -1,7 +1,7 @@
 export default function BoutonInventaire() {
     return (
-        <div className="bouton-inventaire">
-            <a href="/inventaire"><button>Inventaire</button></a>
-        </div>
+        <button className="bouton-inventaire" onClick={() => window.location.href = "/inventaire"}>
+           → Inventaire
+        </button>
     )  
 }
