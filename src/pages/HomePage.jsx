@@ -16,6 +16,7 @@ const HomePage = () => {
 
   const handleSelectCharacter = (character) => {
     setSelectedCharacter(character);
+    localStorage.setItem("selectedcharacter", JSON.stringify(character));
   };
 
   const handleStart = () => {
