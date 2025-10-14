@@ -12,7 +12,7 @@ const QuestPage = () => {
       <div className="titles">
           <h1> Quêtes </h1>
       </div>
-      <div className="content">
+      <div className="content-QuestPage">
           <Card title={quests[id]?.title} description={quests[id]?.description} objective={quests[id]?.objective} />
             <div className="btn">
                 <BoutonInventaire />
