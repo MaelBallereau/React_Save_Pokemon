@@ -5,20 +5,65 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   background-image: url("/img/background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
 .titles {
   text-align: center;
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
   font-weight: 500;
   margin-top: 2rem;
   margin-bottom: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffffff; // blanc pour contraster avec ton bg
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); // pour améliorer la lisibilité
+
+  h1 {
+    font-size: 8rem;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    @media (max-width: 768px) {
+      font-size: 5rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 3.5rem;
+    }
+  }
+
+  p {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    font-weight: 500;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.2rem;
+    }
+  }
 }
