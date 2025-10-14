@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import InventoryPage from "./pages/InventoryPage";
 import QuestPage from "./pages/QuestPage";
 import FailurePage from "./pages/FailurePage";
-import NotFoundpage from "./pages/NotFoundpage";
+import NotFoundpage from "./pages/NotFoundPage";
 
 function App() {
   return (
