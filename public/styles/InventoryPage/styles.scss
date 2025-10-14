@@ -14,10 +14,27 @@
   }
 }
 
+.pannel {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  padding: 0 20px;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
 .inventory-list {
-  width: 40%;
+  flex: 1;
   height: 80vh;
-  margin: 0 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+}
+
+.shop-panel {
+  flex: 1;
+  height: 80vh;
   background-color: #f0f0f0;
   border: 2px solid #ccc;
   border-radius: 12px;
