@@ -1,7 +1,7 @@
 export default function BoutonCombat() {
     return (
-        <div className="bouton-combat">
-            <a href="/combat"><button>Combat</button></a>
-        </div>
+        <button className="bouton-combat" onClick={() => window.location.href = "/combat"}>
+           → Combat
+        </button>
     )  
 }

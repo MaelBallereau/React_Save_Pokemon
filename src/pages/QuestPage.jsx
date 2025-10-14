@@ -13,14 +13,14 @@ const QuestPage = () => {
           <h1> Quêtes </h1>
       </div>
       <div className="content">
-          <Card title={quests[id]?.title} description={quests[id]?.description} objectif={quests[id]?.objectif} />
-      </div>
-      <div className="inventory-button">
-          <BoutonInventaire />
-      </div>
-      <div className="combat-button">
-          <BoutonCombat />
-      </div>
+          <Card title={quests[id]?.title} description={quests[id]?.description} objective={quests[id]?.objective} />
+            <div className="btn">
+                <BoutonInventaire />
+            </div>
+            <div className="btn">
+                <BoutonCombat />
+            </div>
+      </div>  
     </>
   );
 };
