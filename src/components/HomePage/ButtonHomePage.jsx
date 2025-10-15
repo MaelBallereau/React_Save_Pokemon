@@ -1,3 +1,4 @@
+import Button from "../GlobalComponents/Button";
 export default function ButtonHomePage({
   selectedCharacter,
   handleStart,
@@ -5,7 +6,7 @@ export default function ButtonHomePage({
 }) {
   return (
     <div className="button-HomePage">
-      <button onClick={handleStart}>Commencer</button>
+      <Button onClick={handleStart} text="Commencer" />
       <p className={`error-message ${errorMessage ? "" : "hidden"}`}>
         {errorMessage || "\u00A0"}
       </p>
