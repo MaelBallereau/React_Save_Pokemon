@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import { useGameContext } from "../Context/GameContext";
 import TitleHomePages from "../components/HomePage/TitleHomePages";
 import ButtonHomePage from "../components/HomePage/ButtonHomePage";
+
 const HomePage = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const { selectedCharacter, setCharacter, resetGame } = useGameContext();
   const [errorMessage, setErrorMessage] = useState(null);
-  const { resetGame } = useGameContext();
 
   useEffect(() => {
     if (selectedCharacter !== null) {
@@ -17,15 +17,14 @@ const HomePage = () => {
   }, [selectedCharacter]);
 
   const handleSelectCharacter = (character) => {
-    setSelectedCharacter(character);
-    localStorage.setItem("selectedcharacter", JSON.stringify(character));
+    setCharacter(character);
   };
 
   const handleStart = () => {
     if (selectedCharacter) {
       window.location.href = "/quete";
     } else {
-      setErrorMessage("Vous devez selectionnée un Pokémon");
+      setErrorMessage("Vous devez sélectionner un Pokémon");
     }
   };
 
