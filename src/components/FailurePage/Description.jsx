@@ -3,7 +3,7 @@ export default function Description({ name, onVideoEnd }) {
     <div className="description">
       {name && (
         <video
-          src={`/video/${name.loLowerCase()}.mp4`}
+          src={`/video/${name.toLowerCase()}.mp4`}
           autoPlay
           muted
           className="pokemon-video"
