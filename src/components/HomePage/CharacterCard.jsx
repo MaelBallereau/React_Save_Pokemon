@@ -1,10 +1,13 @@
+import DynamicBar from "../GlobalComponents/DynamicBar";
 
 export default function CharacterCard({
   avatar,
   firstname,
   race,
   health,
+  maxHealth,
   energy,
+  maxEnergy,
   attack,
   defense,
   money,
@@ -27,10 +30,22 @@ export default function CharacterCard({
       <div className="character-stats">
         <ul>
           <li>
-            <strong>❤️ Santé :</strong> {health}
+            <strong>❤️ Santé </strong>
+            {maxHealth ? (
+              <DynamicBar type="health" value={health} max={maxHealth} />
+            ) : (
+              ""
+            )}
+            {health}
           </li>
           <li>
-            <strong>⚡ Énergie :</strong> {energy}
+            <strong>⚡ Énergie </strong>
+            {maxEnergy ? (
+              <DynamicBar type="energy" value={energy} max={maxEnergy} />
+            ) : (
+              ""
+            )}
+            {energy}
           </li>
           <li>
             <strong>🗡️ Attaque :</strong> {attack}
@@ -38,12 +53,16 @@ export default function CharacterCard({
           <li>
             <strong>🛡️ Défense :</strong> {defense}
           </li>
-          <li>
-            <strong className="money">
-              <img className="money-img" src="/img/money.png" /> Money :
-            </strong>{" "}
-            {money}
-          </li>
+          {!money ? (
+            ""
+          ) : (
+            <li>
+              <strong className="money">
+                <img className="money-img" src="/img/money.png" /> Money :
+              </strong>
+              {money}
+            </li>
+          )}
         </ul>
       </div>
       {spells && spells.length > 0 && (

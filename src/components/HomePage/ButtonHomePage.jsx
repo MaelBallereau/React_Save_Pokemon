@@ -6,8 +6,7 @@ export default function ButtonHomePage({
   handleContinue,
   errorMessage,
 }) {
-  const hasQuests = !!localStorage.getItem("quests"); // true si quests existe
-
+  const hasQuests = !!localStorage.getItem("quests"); 
   return (
     <div className="button-HomePage">
       {hasQuests ? (
