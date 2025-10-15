@@ -1,4 +1,4 @@
-@use "../../variable.scss" as *;
+@use "./variable.scss" as *;
 
 * {
   list-style: none;
@@ -139,9 +139,6 @@ body {
     }
   }
 }
-
-// --character-card--
-
 .character-card {
   box-sizing: border-box;
   padding: 1.5rem;
