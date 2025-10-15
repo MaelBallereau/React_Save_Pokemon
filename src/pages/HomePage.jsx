@@ -1,6 +1,6 @@
 import "../../public/styles/HomePage/styles.scss";
 import CharacterCard from "../components/HomePage/CharacterCard";
-import characters from "../../public/data/characters.json";
+import characters from "../data/characters.json";
 import { useState, useEffect } from "react";
 import { useGameContext } from "../Context/GameContext";
 import TitleHomePages from "../components/HomePage/TitleHomePages";
