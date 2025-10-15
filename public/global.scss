@@ -98,3 +98,31 @@ body {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); // halo bleu subtil
   }
 }
+.dynamic-bar {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background-color: #f3f4f6; // gris clair
+  border-radius: 9999px; // forme de pilule
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease;
+  }
+
+  // Thèmes selon le type
+  &.health {
+    .dynamic-bar-fill {
+      background-color: #ef4444;
+    }
+  }
+
+  &.energy {
+    .dynamic-bar-fill {
+      background-color: #f59e0b;
+    }
+  }
+}

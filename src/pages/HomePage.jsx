@@ -38,7 +38,9 @@ const HomePage = () => {
             firstname={character.name}
             race={character.class}
             health={character.health}
+            maxHealth={character.healthMax}
             energy={character.mana}
+            maxEnergy={character.manaMax}
             attack={character.damage}
             defense={character.defense}
             money={character.fortune}
