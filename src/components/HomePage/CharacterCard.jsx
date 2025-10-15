@@ -1,9 +1,13 @@
+import DynamicBar from "../GlobalComponents/DynamicBar";
+
 export default function CharacterCard({
   avatar,
   firstname,
   race,
   health,
+  maxHealth,
   energy,
+  maxEnergy,
   attack,
   defense,
   money,
@@ -37,8 +41,11 @@ export default function CharacterCard({
           <li>
             <strong>🛡️ Défense :</strong> {defense}
           </li>
-          <li >
-            <strong className="money"><img className="money-img" src="/img/money.png"/> Money :</strong> {money}
+          <li>
+            <strong className="money">
+              <img className="money-img" src="/img/money.png" /> Money :
+            </strong>{" "}
+            {money}
           </li>
         </ul>
       </div>

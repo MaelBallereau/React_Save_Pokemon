@@ -1,4 +1,4 @@
-export default function DynamicBar(type, value, max) {
+export default function DynamicBar({type, value, max}) {
   return (
     <div className={`dynamic-bar ${type}`}>
       <div
