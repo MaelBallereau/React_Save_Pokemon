@@ -2,12 +2,16 @@ import "../../public/styles/FailurePage/styles.scss";
 import Description from "../components/FailurePage/Description";
 import Button from "../components/GlobalComponents/Button";
 import { useState } from "react";
+import { useGameContext } from "../Context/GameContext";
 
 const FailurePage = () => {
   const characters = JSON.parse(localStorage.getItem("selectedcharacter")) || [];
   const [showReplay, setShowReplay] = useState(false);
 
+
+  const { resetGame } = useGameContext();
   const handleReplay = () => {
+    resetGame();
     window.location.href = "/";
   };
 
