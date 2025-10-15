@@ -1,12 +1,12 @@
-export default function Description({ characters }) {
+export default function Description({ name }) {
     return (
         <div className="description">
             <p>Vous avez perdu le combat !</p>
             <p>Retentez votre chance en choisissant un nouveau Pokémon.</p>
 
-            {characters && (
+            {name && (
                 <video
-                    src={`/videos/${characters.name.toLowerCase()}.mp4`}
+                    src={`/video/${name}.mp4`}
                     autoPlay
                     muted
                     loop
