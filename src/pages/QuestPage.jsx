@@ -7,6 +7,12 @@ const QuestPage = () => {
   const quests = JSON.parse(localStorage.getItem("quests")) || Quest;
   const id = JSON.parse(localStorage.getItem("id")) || 0;
   const selectedcharacter = JSON.parse(localStorage.getItem("selectedcharacter"));
+  const handleCombat = () => {
+    window.location.href = "/combat";
+  };
+  const handleInventaire = () => {
+    window.location.href = "/inventaire";
+  };
   return (
     <>
       <div className="titles">
