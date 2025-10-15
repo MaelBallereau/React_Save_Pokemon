@@ -35,14 +35,15 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #ffffff; // blanc pour contraster avec ton bg
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); // pour améliorer la lisibilité
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 
   h1 {
     font-size: 8rem;
     margin: 0;
     font-weight: 900;
     letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 
     @media (max-width: 768px) {
       font-size: 5rem;
@@ -65,5 +66,35 @@ body {
     @media (max-width: 480px) {
       font-size: 1.2rem;
     }
+  }
+}
+.button {
+  background-color: #ffffff;
+  color: #2d2d2d;
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid #e5e7eb; // gris clair
+  border-radius: 1rem; // arrondi moderne
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+  &:hover {
+    background-color: #f9fafb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #d1d5db;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); // halo bleu subtil
   }
 }
