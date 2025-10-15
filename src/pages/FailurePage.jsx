@@ -3,7 +3,7 @@ import Description from "../components/FailurePage/Description";
 import Button from "../components/GlobalComponents/Button";
 
 const FailurePage = () => {
-  const characters = JSON.parse(localStorage.getItem("characters")) || [];
+  const characters = JSON.parse(localStorage.getItem("selectedcharacter")) || [];
   const handleReplay = () => {
     window.location.href = "/";
   };
@@ -13,7 +13,7 @@ const FailurePage = () => {
         <h1> Défaite </h1>
       </div>
       <div className="content">
-        <Description characters={characters} />
+        <Description name={characters.name} />
       </div>
       <div className="replay-button">
         <Button onClick={handleReplay} text="Rejouer" />
