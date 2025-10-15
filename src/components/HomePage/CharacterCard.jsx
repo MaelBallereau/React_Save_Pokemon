@@ -1,3 +1,4 @@
+
 export default function CharacterCard({
   avatar,
   firstname,
@@ -37,8 +38,11 @@ export default function CharacterCard({
           <li>
             <strong>🛡️ Défense :</strong> {defense}
           </li>
-          <li >
-            <strong className="money"><img className="money-img" src="/img/money.png"/> Money :</strong> {money}
+          <li>
+            <strong className="money">
+              <img className="money-img" src="/img/money.png" /> Money :
+            </strong>{" "}
+            {money}
           </li>
         </ul>
       </div>

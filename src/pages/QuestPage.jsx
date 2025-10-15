@@ -1,8 +1,7 @@
 import "../../public/styles/QuestPage/styles.scss";
 import Card from "../components/QuestPage/Card.jsx";
-import BoutonInventaire from "../components/QuestPage/BoutonInventaire.jsx";
-import BoutonCombat from "../components/QuestPage/BoutonCombat.jsx";
 import Quest from "../../public/data/quests.json";
+import Button from "../components/GlobalComponents/Button.jsx";
 
 const QuestPage = () => {
   const quests = JSON.parse(localStorage.getItem("quests")) || Quest;
@@ -11,17 +10,21 @@ const QuestPage = () => {
   return (
     <>
       <div className="titles">
-          <h1> Quêtes </h1>
+        <h1> Quêtes </h1>
       </div>
       <div className="content-QuestPage">
-          <Card title={quests[id]?.title} description={quests[id]?.description} objective={quests[id]?.objective} />
-            <div className="btn">
-                <BoutonInventaire />
-            </div>
-            <div className="btn">
-                <BoutonCombat />
-            </div>
-      </div>  
+        <Card
+          title={quests[id]?.title}
+          description={quests[id]?.description}
+          objective={quests[id]?.objective}
+        />
+        <div className="btn">
+          <Button onClick={handleInventaire} text="Inventaire" />
+        </div>
+        <div className="btn">
+          <Button onClick={handleCombat} text="Combat" />
+        </div>
+      </div>
     </>
   );
 };

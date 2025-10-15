@@ -4,9 +4,9 @@ import "../../public/styles/InventoryPage/styles.scss";
 import "../../public/styles/HomePage/styles.scss";
 
 import CharacterCard from "../components/HomePage/CharacterCard.jsx";
-import BackButton from "../components/InventoryPage/BackButton.jsx";
 import InventoryList from "../components/InventoryPage/InventoryList.jsx";
 import ShopPanel from "../components/InventoryPage/ShopPanel.jsx";
+import Button from "../components/GlobalComponents/Button.jsx";
 
 export default function InventoryPage() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -18,10 +18,14 @@ export default function InventoryPage() {
     }
   }, []);
 
+  const handleBack = () => {
+    window.location.href = "/quete";
+  };
+
   return (
     <>
       <div className="titles">
-        <h1>Inventaire</h1>
+        <h1>Mon Inventaire</h1>
       </div>
 
       <div className="pannel">
@@ -42,7 +46,7 @@ export default function InventoryPage() {
         <ShopPanel className="shop-panel" />
       </div>
 
-      <BackButton />
+      <Button onClick={handleBack} text="Retour" />
     </>
   );
 }
