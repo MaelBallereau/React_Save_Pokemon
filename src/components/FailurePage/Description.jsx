@@ -6,7 +6,7 @@ export default function Description({ name }) {
 
             {name && (
                 <video
-                    src={`/video/${name}.mp4`}
+                    src={`/video/${name.toLowerCase()}.mp4`}
                     autoPlay
                     muted
                     loop
