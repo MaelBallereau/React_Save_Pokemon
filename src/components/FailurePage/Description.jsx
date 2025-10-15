@@ -1,18 +1,21 @@
-export default function Description({ name }) {
-    return (
-        <div className="description">
-            <p>Vous avez perdu le combat !</p>
-            <p>Retentez votre chance en choisissant un nouveau Pokémon.</p>
+export default function Description({ name, onVideoEnd }) {
+  return (
+    <div className="description">
+      {name && (
+        <video
+          src={`/video/${name}.mp4`}
+          autoPlay
+          muted
+          className="pokemon-video"
+          onEnded={onVideoEnd}
+        />
+      )}
 
-            {name && (
-                <video
-                    src={`/video/${name}.mp4`}
-                    autoPlay
-                    muted
-                    loop
-                    className="pokemon-video"
-                />
-            )}
-        </div>
-    )
+      {/* Texte superposé */}
+      <div className="overlay-text">
+        <h1>Vous avez perdu !</h1>
+        <p>Retentez votre chance en choisissant un nouveau Pokémon.</p>
+      </div>
+    </div>
+  );
 }
