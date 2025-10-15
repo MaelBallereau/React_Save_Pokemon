@@ -6,6 +6,7 @@ import InventoryPage from "./pages/InventoryPage";
 import FailurePage from "./pages/FailurePage";
 import NotFoundpage from "./pages/NotFoundPage";
 import { GameProvider } from "./Context/GameContext";
+import CombatPage from "./pages/CombatPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/quete" element={<QuestPage />} />
           <Route path="/inventaire" element={<InventoryPage />} />
           <Route path="/echec" element={<FailurePage />} />
+          <Route path="/combat" element={<CombatPage />} />
           <Route path="*" element={<NotFoundpage />} />
         </Routes>
       </GameProvider>
