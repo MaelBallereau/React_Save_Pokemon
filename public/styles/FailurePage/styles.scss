@@ -1,0 +1,43 @@
+.failure-page,
+.description {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black; // les bandes noires
+  position: relative;
+}
+
+.pokemon-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; // garde le ratio portrait
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2; // devant la vidéo
+  text-shadow: 2px 2px 8px black; // lisible sur la vidéo
+}
+
+.replay-button {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3; // au-dessus de tout
+}
