@@ -1,13 +1,10 @@
-import DynamicBar from "../GlobalComponents/DynamicBar";
 
 export default function CharacterCard({
   avatar,
   firstname,
   race,
   health,
-  maxHealth,
   energy,
-  maxEnergy,
   attack,
   defense,
   money,

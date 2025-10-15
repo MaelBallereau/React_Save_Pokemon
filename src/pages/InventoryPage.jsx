@@ -9,12 +9,12 @@ import ShopPanel from "../components/InventoryPage/ShopPanel.jsx";
 import Button from "../components/GlobalComponents/Button.jsx";
 
 export default function InventoryPage() {
-  const [selectedcharacter, setselectedcharacter] = useState(null);
-
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  
   useEffect(() => {
     const storedData = localStorage.getItem("selectedcharacter");
     if (storedData) {
-      setselectedcharacter(JSON.parse(storedData));
+      setSelectedCharacter(JSON.parse(storedData));
     }
   }, []);
 
@@ -29,8 +29,18 @@ export default function InventoryPage() {
       </div>
 
       <div className="pannel">
-        {selectedcharacter && (
-          <CharacterCard className="character-card" data={selectedcharacter} />
+        {selectedCharacter && (
+          <CharacterCard className="CharacterCard" avatar={ `/img/${selectedCharacter.picture}`}
+           firstname={selectedCharacter.name} 
+           race={selectedCharacter.class} 
+           health={selectedCharacter.health} 
+           energy={selectedCharacter.mana} 
+           attack={selectedCharacter.damage} 
+           defense={selectedCharacter.defense} 
+           money={selectedCharacter.fortune} 
+           spells={selectedCharacter.spell? [selectedCharacter.spell] : []} 
+           onClick={selectedCharacter.onClick} 
+           isSelected={selectedCharacter.isSelected} />
         )}
         <InventoryList className="inventory-list" />
         <ShopPanel className="shop-panel" />
@@ -40,3 +50,7 @@ export default function InventoryPage() {
     </>
   );
 }
+
+  
+  
+ 
