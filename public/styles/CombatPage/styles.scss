@@ -77,6 +77,14 @@
           background-color: #6c7a7d;
         }
       }
+      .btn-attack-spell {
+        background-color: #3498db; // Bleu
+        color: white;
+
+        &:hover:not(:disabled) {
+          background-color: #2980b9;
+        }
+      }
     }
   }
 

@@ -6,15 +6,14 @@ export default function EntitySheet({
   name,
   className,
   health,
+  maxHealth,
   energy,
+  maxEnergy,
   damage,
   defense,
   objects = [],
   onClick = (_obj) => {},
 }) {
-  const maxHealth = health;
-  const maxEnergy = energy;
-
   return (
     <div className={`entity-sheet ${className}`}>
       <div className="entity-avatar">
@@ -52,7 +51,11 @@ export default function EntitySheet({
       {objects.length > 0 && (
         <div className="object">
           {objects.map((obj) => (
-            <div className="item" onClick={onClick ? () => onClick(obj) : undefined} key={obj.id}>
+            <div
+              className="item"
+              onClick={onClick ? () => playTurn("potion", obj) : undefined}
+              key={obj.id}
+            >
               <img src={`/img/${obj.picture}`} alt={obj.name} />
               <p>{obj.name}</p>
               <div className="details">

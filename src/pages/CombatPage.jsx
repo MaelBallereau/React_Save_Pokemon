@@ -4,24 +4,37 @@ import Creatures from "../data/creatures.json";
 import Combats from "../data/combats.json";
 import { useState, useEffect } from "react";
 import DialogueLog from "../components/CombatPage/DialogueLog";
-import { attack, isDead, enemyAI } from "../engine/combat";
+import {
+  attack,
+  isDead,
+  enemyAI,
+  spell,
+  useItemOnCharacter,
+} from "../engine/combat";
 import { useNavigate } from "react-router-dom";
-
-type Dialogue = {
-  name: string;
-  user?: string;
-};
 
 export default function CombatPage() {
   const navigate = useNavigate();
+
+  const win = () => {
+    setTimeout(() => navigate("/victoire"), 2000);
+  };
+  const loose = () => {
+    setTimeout(() => navigate("/echec"), 2000);
+  };
+
   const storedCharacter = JSON.parse(
     localStorage.getItem("selectedcharacter") || "{}"
   );
-  const [character, setCharacter] = useState({ ...storedCharacter });
+  const [character, setCharacter] = useState({
+    ...storedCharacter,
+    maxHealth: storedCharacter.health,
+    maxMana: storedCharacter.mana,
+  });
   const [currentEnemyIndex, setCurrentEnemyIndex] = useState(0);
   const [canFlee, setCanFlee] = useState(true);
-  const [dialogues, setDialogues] = useState<Dialogue[]>([]);
-  const [turn, setTurn] = useState<"player" | "enemy">("player");
+  const [dialogues, setDialogues] = useState([]);
+  const [turn, setTurn] = useState("player");
 
   const idQuest = JSON.parse(localStorage.getItem("idQuest") || "0");
   const combatData = Combats.find((combat) => combat.questId === idQuest);
@@ -38,18 +51,18 @@ export default function CombatPage() {
         console.warn(`Créature non trouvée pour : ${enemy.name}`);
         return [];
       }
-      return Array(enemy.quantity).fill({ ...creature });
+      return Array(enemy.quantity).fill({
+        ...creature,
+        maxHealth: creature.health,
+        maxMana: creature.mana,
+      });
     });
   });
 
   useEffect(() => {
     const enemyIndex = enemies.findIndex((e) => e && !isDead(e));
     if (enemyIndex === -1) {
-      
-      setTimeout(() => {
-        localStorage.setItem("idQuest", String(Math.min(5, idQuest + 1)));
-        navigate("/quete");
-      }, 3000);
+      win();
     }
   }, [enemies, idQuest, navigate]);
 
@@ -123,11 +136,11 @@ export default function CombatPage() {
 
   const items = JSON.parse(localStorage.getItem("items") || "[]");
 
-  const handleObject = (object: Dialogue) => {
+  const handleObject = (object) => {
     setDialogues((prev) => [...prev, object]);
   };
 
-  const playTurn = () => {
+  const playTurn = (type) => {
     if (turn !== "player") return;
     const enemyIndex = enemies.findIndex((e) => e && !isDead(e));
     if (enemyIndex === -1) {
@@ -138,13 +151,49 @@ export default function CombatPage() {
           user: "enemy",
         },
       ]);
-      return;
+      win();
     }
+
     const enemy = enemies[enemyIndex];
     if (!enemy) return;
 
-    const result = attack(character, enemy);
+    let result = attack(character, enemy);
+    if (type === "spell") {
+      if (character.mana < character.spell.manaCost) {
+        setDialogues((prev) => [
+          ...prev,
+          {
+            name: `${character.name} n'a pas assez de mana pour lancer ${character.spell.name} !`,
+            user: "player",
+          },
+        ]);
+        return;
+      }
 
+      result = spell(character, enemy);
+
+      setCharacter((prev) => ({
+        ...prev,
+        mana: result.mana,
+      }));
+    }
+    if (type === "potion" && items) {
+      const updatedCharacter = useItemOnCharacter(character, items);
+      setCharacter(updatedCharacter);
+
+      setDialogues((prev) => [
+        ...prev,
+        {
+          name: `${character.name} utilise ${items.name} et récupère ${
+            items.amount
+          } ${items.target === "health" ? "points de vie" : "mana"} !`,
+          user: "player",
+        },
+      ]);
+
+      setTurn("enemy");
+      return;
+    }
     setDialogues((prev) => [
       ...prev,
       {
@@ -155,11 +204,13 @@ export default function CombatPage() {
       },
     ]);
 
-    setEnemies((prev) => {
-      const newEnemies = [...prev];
-      newEnemies[enemyIndex] = { ...enemy, health: result.health };
-      return newEnemies;
-    });
+    setEnemies((prevEnemies) =>
+      prevEnemies.map((e, i) =>
+        i === enemyIndex
+          ? { ...e, health: Math.max(0, e.health - result.damage) }
+          : e
+      )
+    );
 
     if (isDead(result)) {
       setDialogues((prev) => [
@@ -197,14 +248,16 @@ export default function CombatPage() {
         setDialogues((prev) => [
           ...prev,
           {
-            name: `${enemy.name} utilise ${
-              result.attackName || "une attaque"
-            } et inflige ${result.damage} dégâts à ${character.name}.`,
+            name: `${enemy.name} utilise une attaque
+            et inflige ${result.damage} dégâts à ${character.name}.`,
             user: "enemy",
           },
         ]);
 
-        setCharacter((prev) => ({ ...prev, health: result.health }));
+        setCharacter((prev) => ({
+          ...prev,
+          health: Math.max(0, prev.health - result.damage),
+        }));
 
         if (isDead(result)) {
           setDialogues((prev) => [
@@ -214,6 +267,7 @@ export default function CombatPage() {
               user: "enemy",
             },
           ]);
+          loose();
         }
 
         setCurrentEnemyIndex((prev) => prev + 1);
@@ -230,7 +284,9 @@ export default function CombatPage() {
           type="character"
           avatar={character ? `/img/${character.picture}` : ""}
           health={character?.health ?? 0}
+          maxHealth={character?.maxHealth ?? 0}
           energy={character?.mana ?? 0}
+          maxEnergy={character?.maxMana ?? 0}
           damage={character?.damage ?? 0}
           defense={character?.defense ?? 0}
           objects={items}
@@ -238,8 +294,15 @@ export default function CombatPage() {
         />
         <div className="section-btn-combat">
           <button
+            className="btn-attack-spell"
+            onClick={() => playTurn("spell")}
+            disabled={turn !== "player"}
+          >
+            {character.spell ? character.spell.name : "Attaquer"}
+          </button>
+          <button
             className="btn-attack"
-            onClick={playTurn}
+            onClick={() => playTurn("attack")}
             disabled={turn !== "player"}
           >
             Attaquer
@@ -265,7 +328,9 @@ export default function CombatPage() {
                 type="ennemies"
                 avatar={`/img/${enemy.picture}`}
                 health={enemy.health}
+                maxHealth={enemy.maxHealth}
                 energy={enemy.mana}
+                maxEnergy={enemy.maxMana}
                 damage={enemy.damage}
                 defense={enemy.defense}
               />

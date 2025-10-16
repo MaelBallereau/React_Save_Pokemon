@@ -43,10 +43,27 @@ export function attack(attacker, defender) {
   return {
     health: newHealth,
     damage: damage,
-    attackName: attacker.spell?.name || "Attaque basique",
-    log: `${attacker.name} utilise ${
-      attacker.spell?.name || "une attaque"
+    attackName: "Attaque basique",
+    log: `${attacker.name} utilise  "une attaque"
     } et inflige ${damage} dégâts à ${defender.name}.`,
+  };
+}
+
+export function spell(attacker, defender) {
+  const randomCrit = Math.round(Math.random() * (7 - 1) + 1);
+  const damage = Math.max(
+    1,
+    attacker.spell.amount + randomCrit - defender.defense
+  );
+  const newMana = Math.max(0, attacker.mana - attacker.spell.manaCost);
+  const newHealth = Math.max(0, defender.health - damage);
+
+  return {
+    health: newHealth,
+    damage: damage,
+    mana: newMana,
+    attackName: attacker.spell.name,
+    log: `${attacker.name} utilise ${attacker.spell.name} et inflige ${damage} dégâts à ${defender.name}.`,
   };
 }
 
@@ -71,4 +88,11 @@ export function useItemOnCharacter(character, item) {
 
 export function enemyAI(enemy, target) {
   return attack(enemy, target);
+}
+export function enemyAIspell(enemy, target) {
+  if (enemy.spell && enemy.mana >= enemy.spell.manaCost) {
+    return spell(enemy, target);
+  } else {
+    return attack(enemy, target);
+  }
 }
