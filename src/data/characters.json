@@ -4,12 +4,12 @@
     "name": "Bulbizarre",
     "class": "Graine",
     "picture": "bulbizarre.png",
-    "health": 450,
-    "healthMax": 450,
+    "health": 100,
+    "healthMax": 100,
     "mana": 200,
     "manaMax": 200,
-    "damage": 65,
-    "defense": 65,
+    "damage": 40,
+    "defense": 5,
     "fortune": 75,
     "spell": {
       "name": "Fouet Lianes",
@@ -28,15 +28,15 @@
     "healthMax": 100000,
     "mana": 200,
     "manaMax": 200,
-    "damage": 500,
-    "defense": 500,
+    "damage": 10,
+    "defense": 10,
     "fortune": 200,
     "spell": {
       "name": "Flammèche",
       "target": "enemy",
       "effect": "damage",
-      "amount": 40,
-      "manaCost": 25
+      "amount": 10000,
+      "manaCost": 10
     }
   },
   {
@@ -55,7 +55,7 @@
       "name": "Pistolet à O",
       "target": "enemy",
       "effect": "damage",
-      "amount": 40,
+      "amount": 400,
       "manaCost": 25
     }
   },
