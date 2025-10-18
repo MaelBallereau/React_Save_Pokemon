@@ -1,5 +1,4 @@
 export default function CombatLog({ data }) {
-  const character = JSON.parse(localStorage.getItem("selectedcharacter"));
   const isPlayer = data.user === "player";
   const isEnemy = data.user === "enemy";
 
