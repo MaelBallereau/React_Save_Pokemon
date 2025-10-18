@@ -2,7 +2,7 @@ import "../../public/styles/CombatPage/styles.scss";
 import EntitySheet from "../components/InventoryPage/EntitySheet";
 import Creatures from "../data/creatures.json";
 import Combats from "../data/combats.json";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import DialogueLog from "../components/CombatPage/DialogueLog";
 import {
   attack,
@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function CombatPage() {
   const navigate = useNavigate();
+
+  const consoleRef = useRef(null);
 
   const win = () => {
     setTimeout(() => navigate("/victoire"), 2000);
@@ -34,6 +36,13 @@ export default function CombatPage() {
   const [currentEnemyIndex, setCurrentEnemyIndex] = useState(0);
   const [canFlee, setCanFlee] = useState(true);
   const [dialogues, setDialogues] = useState([]);
+
+  useEffect(() => {
+    if (consoleRef.current) {
+      consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
+    }
+  }, [dialogues]);
+
   const [turn, setTurn] = useState("player");
 
   const idQuest = JSON.parse(localStorage.getItem("idQuest") || "0");
@@ -89,6 +98,7 @@ export default function CombatPage() {
         },
       ]);
       setCanFlee(false);
+      setTurn("enemy");
     }
   };
 
@@ -136,8 +146,23 @@ export default function CombatPage() {
 
   const items = JSON.parse(localStorage.getItem("items") || "[]");
 
-  const handleObject = (object) => {
-    setDialogues((prev) => [...prev, object]);
+  const handleObject = (item) => {
+    if (turn !== "player") return;
+
+    const updatedCharacter = useItemOnCharacter(character, item);
+    setCharacter(updatedCharacter);
+
+    setDialogues((prev) => [
+      ...prev,
+      {
+        name: `${character.name} utilise ${item.name} et récupère ${
+          item.amount
+        } ${item.target === "health" ? "points de vie" : "points de mana"} !`,
+        user: "player",
+      },
+    ]);
+
+    setTurn("enemy");
   };
 
   const playTurn = (type) => {
@@ -281,7 +306,7 @@ export default function CombatPage() {
         <EntitySheet
           name={character?.name ?? ""}
           className="character"
-          type="character"
+          type={character?.class ?? ""}
           avatar={character ? `/img/${character.picture}` : ""}
           health={character?.health ?? 0}
           maxHealth={character?.maxHealth ?? 0}
@@ -323,9 +348,8 @@ export default function CombatPage() {
             enemy ? (
               <EntitySheet
                 key={`${enemy.name}-${index}`}
-                name={`${enemy.name} (${index})`}
+                name={`${enemy.name} `}
                 className="ennemies"
-                type="ennemies"
                 avatar={`/img/${enemy.picture}`}
                 health={enemy.health}
                 maxHealth={enemy.maxHealth}
@@ -338,7 +362,7 @@ export default function CombatPage() {
           )}
         </div>
 
-        <div className="console">
+        <div className="console" ref={consoleRef}>
           {dialogues.map((data, index) => (
             <div className="dialogue-box" key={index}>
               <DialogueLog data={data} />

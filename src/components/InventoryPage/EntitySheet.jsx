@@ -51,11 +51,7 @@ export default function EntitySheet({
       {objects.length > 0 && (
         <div className="object">
           {objects.map((obj) => (
-            <div
-              className="item"
-              onClick={onClick ? () => playTurn("potion", obj) : undefined}
-              key={obj.id}
-            >
+            <div className="item" onClick={() => onClick(obj)} key={obj.id}>
               <img src={`/img/${obj.picture}`} alt={obj.name} />
               <p>{obj.name}</p>
               <div className="details">
