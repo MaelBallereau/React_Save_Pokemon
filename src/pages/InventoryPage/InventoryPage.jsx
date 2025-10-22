@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import "../../public/styles/InventoryPage/styles.scss";
-import "../../public/styles/HomePage/styles.scss";
+import "./styles.scss";
 
 import CharacterCard from "../components/HomePage/CharacterCard.jsx";
 import InventoryList from "../components/InventoryPage/InventoryList.jsx";

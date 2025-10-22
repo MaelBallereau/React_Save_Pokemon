@@ -1,14 +1,14 @@
 import { Routes, Route, BrowserRouter } from "react-router";
 
-import HomePage from "./pages/HomePage";
-import QuestPage from "./pages/QuestPage";
-import InventoryPage from "./pages/InventoryPage";
-import FailurePage from "./pages/FailurePage";
-import NotFoundpage from "./pages/NotFoundPage";
+import HomePage from "./pages/HomePage/HomePage";
+import QuestPage from "./pages/QuestPage/QuestPage";
+import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import FailurePage from "./pages/FailurePage/FailurePage";
+import NotFoundpage from "./pages/NotFoundPage/NotFoundPage";
 import { GameProvider } from "./Context/GameContext";
-import CombatPage from "./pages/CombatPage";
-import EndPage from "./pages/EndPage";
-import VictoryPage from "./pages/VictoryPage";
+import CombatPage from "./pages/CombatPage/CombatPage";
+import EndPage from "./pages/EndPage/EndPage";
+import VictoryPage from "./pages/VictoryPage/VictoryPage";
 
 function App() {
   return (

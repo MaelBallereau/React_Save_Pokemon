@@ -1,10 +1,10 @@
-import "../../public/styles/HomePage/styles.scss";
-import CharacterCard from "../components/HomePage/CharacterCard";
-import characters from "../data/characters.json";
+import "./styles.scss";
+import CharacterCard from "../../components/HomePage/CharacterCard";
+import characters from "../../data/characters.json";
 import { useState, useEffect } from "react";
-import { useGameContext } from "../Context/GameContext";
-import TitleHomePages from "../components/HomePage/TitleHomePages";
-import ButtonHomePage from "../components/HomePage/ButtonHomePage";
+import { useGameContext } from "../../Context/GameContext";
+import TitleHomePages from "../../components/HomePage/TitleHomePages";
+import ButtonHomePage from "../../components/HomePage/ButtonHomePage";
 
 const HomePage = () => {
   const { selectedCharacter, setCharacter, resetGame } = useGameContext();

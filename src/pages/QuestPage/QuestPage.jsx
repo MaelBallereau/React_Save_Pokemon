@@ -1,8 +1,8 @@
-import "../../public/styles/QuestPage/styles.scss";
-import Card from "../components/QuestPage/Card.jsx";
-import Quest from "../data/quests.json";
-import Button from "../components/GlobalComponents/Button.jsx";
-import { useGameContext } from "../Context/GameContext";
+import "./styles.scss";
+import Card from "../../components/QuestPage/Card.jsx";
+import Quest from "../../data/quests.json";
+import Button from "../../components/GlobalComponents/Button.jsx";
+import { useGameContext } from "../../Context/GameContext.jsx";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,16 +1,16 @@
-import "../../public/styles/CombatPage/styles.scss";
-import EntitySheet from "../components/InventoryPage/EntitySheet";
-import Creatures from "../data/creatures.json";
-import Combats from "../data/combats.json";
+import "./styles.scss";
+import EntitySheet from "../../components/InventoryPage/EntitySheet";
+import Creatures from "../../data/creatures.json";
+import Combats from "../../data/combats.json";
 import { useState, useEffect, useRef } from "react";
-import DialogueLog from "../components/CombatPage/DialogueLog";
+import DialogueLog from "../../components/CombatPage/DialogueLog";
 import {
   attack,
   isDead,
   enemyAI,
   spell,
   useItemOnCharacter,
-} from "../engine/combat";
+} from "../../engine/combat";
 import { useNavigate } from "react-router-dom";
 
 export default function CombatPage() {

@@ -1,7 +1,7 @@
-import Button from "../components/GlobalComponents/Button";
-import { useGameContext } from "../Context/GameContext";
+import Button from "../../components/GlobalComponents/Button";
+import { useGameContext } from "../../Context/GameContext";
 import { useNavigate } from "react-router-dom";
-import "../../public/styles/EndPage/styles.scss";
+import "./styles.scss";
 
 export default function EndPage() {
   const { resetGame } = useGameContext();
