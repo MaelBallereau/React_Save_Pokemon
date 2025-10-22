@@ -43,7 +43,7 @@ export default function ShopPanel({ onPurchase }) {
       <h2>Magasin</h2>
       {cart.map(item => (
         <div key={item.id} className="shop-item">
-          <img src={item.img} alt={item.name} className="shop-item-img" />
+          <img src={`/img/${item.picture}`} alt={item.name} className="shop-item-img" />
           <p>{item.name}</p>
           <p>Prix : {item.price}</p>
           <div className="quantity-controls">
