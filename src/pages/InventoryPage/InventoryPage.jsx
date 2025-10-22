@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 
 import "./styles.scss";
 
-
-import CharacterCard from "../../components/HomePage/CharacterCard.jsx";
-import InventoryList from "../../components/InventoryPage/InventoryList.jsx";
-// import ShopPanel from "../components/InventoryPage/ShopPanel.jsx";
-import DynamicBar from "../../components/GlobalComponents/DynamicBar.jsx";
-import Button from "../../components/GlobalComponents/Button.jsx";
+import CharacterCard from "../components/HomePage/CharacterCard.jsx";
+import InventoryList from "../components/InventoryPage/InventoryList.jsx";
+import ShopPanel from "../components/InventoryPage/ShopPanel.jsx";
+import DynamicBar from "../components/GlobalComponents/DynamicBar.jsx";
+import Button from "../components/GlobalComponents/Button.jsx";
 
 export default function InventoryPage() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -63,7 +62,7 @@ export default function InventoryPage() {
         )}
 
         <InventoryList className="inventory-list" />
-        {/* <ShopPanel className="shop-panel" /> */}
+        <ShopPanel className="shop-panel" />
       </div>
 
       <Button onClick={handleBack} text="Retour" />
