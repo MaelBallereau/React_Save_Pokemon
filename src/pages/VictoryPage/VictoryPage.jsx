@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../public/styles/VictoryPage/styles.scss";
+import "./styles.scss";
 
 export default function VictoryPage() {
   const [questId, setQuestId] = useState(0);

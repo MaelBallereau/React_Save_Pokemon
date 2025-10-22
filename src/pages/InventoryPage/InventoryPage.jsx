@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import "../../public/styles/InventoryPage/styles.scss";
-import "../../public/styles/HomePage/styles.scss";
+import "./styles.scss";
 
-import CharacterCard from "../components/HomePage/CharacterCard.jsx";
-import InventoryList from "../components/InventoryPage/InventoryList.jsx";
+
+import CharacterCard from "../../components/HomePage/CharacterCard.jsx";
+import InventoryList from "../../components/InventoryPage/InventoryList.jsx";
 // import ShopPanel from "../components/InventoryPage/ShopPanel.jsx";
-import DynamicBar from "../components/GlobalComponents/DynamicBar.jsx";
-import Button from "../components/GlobalComponents/Button.jsx";
+import DynamicBar from "../../components/GlobalComponents/DynamicBar.jsx";
+import Button from "../../components/GlobalComponents/Button.jsx";
 
 export default function InventoryPage() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
