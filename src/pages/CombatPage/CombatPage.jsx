@@ -136,7 +136,7 @@ export default function CombatPage() {
             name: "Huile max",
             picture: "huile.png",
             target: "mana",
-            amount: 200,
+            amount: 400,
             price: 50,
           },
         ])
