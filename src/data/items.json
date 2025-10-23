@@ -4,7 +4,7 @@
     "name": "Potion",
     "picture": "potion.png",
     "target": "health",
-    "amount": 20,
+    "amount": 100,
     "price": 5
   },
   {
@@ -12,7 +12,7 @@
     "name": "Huile",
     "picture": "huile.png",
     "target": "mana",
-    "amount": 10,
+    "amount": 30,
     "price": 5
   },
   {
@@ -20,15 +20,15 @@
     "name": "Super Potion",
     "picture": "super-potion.png",
     "target": "health",
-    "amount": 100 ,
+    "amount": 400 ,
     "price": 25
   },
   {
     "id": 4,
     "name": "Huile max",
-    "picture": "huile.png",
+    "picture": "huile-max.png",
     "target": "mana",
-    "amount": 200,
+    "amount": 400,
     "price": 50
   }
 ]

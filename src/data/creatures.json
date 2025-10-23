@@ -4,7 +4,7 @@
     "picture": "rattata.png",
     "health": 300,
     "mana": 0,
-    "damage": 40,
+    "damage": 80,
     "defense": 35
   },
   {
@@ -12,7 +12,7 @@
     "picture": "osselait.png",
     "health": 500,
     "mana": 0,
-    "damage": 50,
+    "damage": 100,
     "defense": 70
   },
   {
@@ -20,7 +20,7 @@
     "picture": "ectoplasma.png",
     "health": 600,
     "mana": 0,
-    "damage": 90,
+    "damage": 180,
     "defense": 70
   },
   {
@@ -28,13 +28,13 @@
     "picture": "mewtwo.png",
     "health": 1060,
     "mana": 200,
-    "damage": 120,
+    "damage": 240,
     "defense": 90,
     "spell": {
       "name": "Psyko",
       "effect": "damage",
       "target": "enemy",
-      "amount": 90,
+      "amount": 300,
       "manaCost": 50
     }
   }
