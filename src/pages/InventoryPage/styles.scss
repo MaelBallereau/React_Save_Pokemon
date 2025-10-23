@@ -29,7 +29,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     padding: 0 20px;
-    height: calc(80vh - 60px);
+    height: calc(85vh - 60px);
     box-sizing: border-box;
   }
 
@@ -214,5 +214,16 @@
         background-color: #45a049;
       }
     }
+  }
+  .backbutton {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
   }
 }

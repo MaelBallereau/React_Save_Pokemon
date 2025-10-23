@@ -76,7 +76,13 @@ export default function InventoryPage() {
                 avatar={`/img/${selectedCharacter.picture}`}
                 firstname={selectedCharacter.name}
                 race={selectedCharacter.class}
-                health={selectedCharacter.health}
+                health={
+                  <DynamicBar
+                    type="health"
+                    value={selectedCharacter.health}
+                    max={100}
+                  />
+                }
                 energy={
                   <DynamicBar
                     type="energy"
@@ -98,9 +104,9 @@ export default function InventoryPage() {
         <InventoryList items={inventory} className="inventory-list" />
         <ShopPanel onPurchase={handlePurchase} className="shop-panel" />
       </div>
-
-      <Button onClick={handleBack} text="Retour"/>
-
+      <div className="backbutton">
+        <Button onClick={handleBack} text="Retour" />
+      </div>
     </section>
   );
 }
