@@ -1,3 +1,4 @@
+
 import DynamicBar from "../GlobalComponents/DynamicBar";
 
 export default function EntitySheet({
@@ -14,6 +15,8 @@ export default function EntitySheet({
   objects = [],
   onClick = (_obj) => {},
 }) {
+  const safeObjects = Array.isArray(objects) ? objects : [];
+
   return (
     <div className={`entity-sheet ${className}`}>
       <div className="entity-avatar">
@@ -31,15 +34,14 @@ export default function EntitySheet({
           <DynamicBar type="health" value={health} max={maxHealth} />
           <span>{health}</span>
         </div>
+
         {maxEnergy ? (
           <div className="stat">
             <strong>⚡ Énergie :</strong>
             <DynamicBar type="energy" value={energy} max={maxEnergy} />
             <span>{energy}</span>
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
 
         <div className="stat">
           <strong>🗡️ Dégâts :</strong> {damage}
@@ -49,9 +51,9 @@ export default function EntitySheet({
         </div>
       </div>
 
-      {objects.length > 0 && (
+      {safeObjects.length > 0 && (
         <div className="object">
-          {objects.map((obj) => (
+          {safeObjects.map((obj) => (
             <div className="item" onClick={() => onClick(obj)} key={obj.id}>
               <img src={`/img/${obj.picture}`} alt={obj.name} />
               <p>{obj.name}</p>

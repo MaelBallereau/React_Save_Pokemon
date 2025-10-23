@@ -2,6 +2,7 @@ import "./styles.scss";
 import EntitySheet from "../../components/InventoryPage/EntitySheet";
 import Creatures from "../../data/creatures.json";
 import Combats from "../../data/combats.json";
+import { useGameContext } from "../../Context/GameContext";
 import { useState, useEffect, useRef, useCallback } from "react";
 import DialogueLog from "../../components/CombatPage/DialogueLog";
 import {
@@ -16,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 export default function CombatPage() {
   const navigate = useNavigate();
   const consoleRef = useRef(null);
+  const { resetGame } = useGameContext();
 
   const storedCharacter = JSON.parse(localStorage.getItem("selectedcharacter"));
 
@@ -34,6 +36,13 @@ export default function CombatPage() {
       consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
     }
   }, [dialogues]);
+
+  useEffect(() => {
+    if (character.health <= 0) {
+      resetGame();
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     if (character && character.name) {

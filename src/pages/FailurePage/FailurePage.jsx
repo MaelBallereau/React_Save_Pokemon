@@ -5,9 +5,9 @@ import { useState } from "react";
 import { useGameContext } from "../../Context/GameContext";
 
 const FailurePage = () => {
-  const characters = JSON.parse(localStorage.getItem("selectedcharacter")) || [];
+  const characters =
+    JSON.parse(localStorage.getItem("selectedcharacter")) || [];
   const [showReplay, setShowReplay] = useState(false);
-
 
   const { resetGame } = useGameContext();
   const handleReplay = () => {
@@ -18,7 +18,7 @@ const FailurePage = () => {
   return (
     <div className="failure-page">
       <Description
-        name={characters.name}
+        video={characters.video}
         onVideoEnd={() => setShowReplay(true)}
       />
 
