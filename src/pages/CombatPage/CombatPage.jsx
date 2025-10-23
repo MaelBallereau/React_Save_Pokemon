@@ -2,32 +2,40 @@ import "./styles.scss";
 import EntitySheet from "../../components/InventoryPage/EntitySheet";
 import Creatures from "../../data/creatures.json";
 import Combats from "../../data/combats.json";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import DialogueLog from "../../components/CombatPage/DialogueLog";
 import {
   attack,
   isDead,
+  enemyAI,
   spell,
-  ItemOnCharacter,
-  enemyAIspell,
+  useItemOnCharacter,
 } from "../../engine/combat";
 import { useNavigate } from "react-router-dom";
 
 export default function CombatPage() {
   const navigate = useNavigate();
+
   const consoleRef = useRef(null);
 
-  const storedCharacter = JSON.parse(localStorage.getItem("selectedcharacter"));
+  const win = () => {
+    setTimeout(() => navigate("/victoire"), 2000);
+  };
+  const loose = () => {
+    setTimeout(() => navigate("/echec"), 2000);
+  };
 
+  const storedCharacter = JSON.parse(
+    localStorage.getItem("selectedcharacter") || "{}"
+  );
   const [character, setCharacter] = useState({
     ...storedCharacter,
-    maxHealth: storedCharacter.healthMax,
-    maxMana: storedCharacter.manaMax,
+    maxHealth: storedCharacter.health,
+    maxMana: storedCharacter.mana,
   });
   const [currentEnemyIndex, setCurrentEnemyIndex] = useState(0);
   const [canFlee, setCanFlee] = useState(true);
   const [dialogues, setDialogues] = useState([]);
-  const [turn, setTurn] = useState("player");
 
   useEffect(() => {
     if (consoleRef.current) {
@@ -35,23 +43,7 @@ export default function CombatPage() {
     }
   }, [dialogues]);
 
-  useEffect(() => {
-    if (character && character.name) {
-      localStorage.setItem("selectedcharacter", JSON.stringify(character));
-    }
-  }, [character]);
-
-  const win = useCallback(() => {
-    setTurn(null);
-    const newQuest = Number(localStorage.getItem("idQuest") || 0) + 1;
-    localStorage.setItem("idQuest", newQuest);
-    setTimeout(() => navigate("/victoire"), 2000);
-  }, [navigate]);
-
-  const loose = useCallback(() => {
-    setTurn(null);
-    setTimeout(() => navigate("/echec"), 2000);
-  }, [navigate]);
+  const [turn, setTurn] = useState("player");
 
   const idQuest = JSON.parse(localStorage.getItem("idQuest") || "0");
   const combatData = Combats.find((combat) => combat.questId === idQuest);
@@ -81,7 +73,7 @@ export default function CombatPage() {
     if (enemyIndex === -1) {
       win();
     }
-  }, [enemies, navigate, win]);
+  }, [enemies, idQuest, navigate]);
 
   const handleFlee = () => {
     if (!canFlee) return;
@@ -110,12 +102,54 @@ export default function CombatPage() {
     }
   };
 
+  useEffect(() => {
+    if (!localStorage.getItem("items")) {
+      localStorage.setItem(
+        "items",
+        JSON.stringify([
+          {
+            id: 1,
+            name: "Potion",
+            picture: "potion.png",
+            target: "health",
+            amount: 20,
+            price: 5,
+          },
+          {
+            id: 2,
+            name: "Huile",
+            picture: "huile.png",
+            target: "mana",
+            amount: 10,
+            price: 5,
+          },
+          {
+            id: 3,
+            name: "Super Potion",
+            picture: "super-potion.png",
+            target: "health",
+            amount: 100,
+            price: 25,
+          },
+          {
+            id: 4,
+            name: "Huile max",
+            picture: "huile.png",
+            target: "mana",
+            amount: 200,
+            price: 50,
+          },
+        ])
+      );
+    }
+  }, []);
+
   const items = JSON.parse(localStorage.getItem("items") || "[]");
 
   const handleObject = (item) => {
     if (turn !== "player") return;
 
-    const updatedCharacter = ItemOnCharacter(character, item);
+    const updatedCharacter = useItemOnCharacter(character, item);
     setCharacter(updatedCharacter);
 
     setDialogues((prev) => [
@@ -142,6 +176,7 @@ export default function CombatPage() {
           user: "enemy",
         },
       ]);
+      win();
     }
 
     const enemy = enemies[enemyIndex];
@@ -157,7 +192,6 @@ export default function CombatPage() {
             user: "player",
           },
         ]);
-        setTurn("enemy");
         return;
       }
 
@@ -169,7 +203,7 @@ export default function CombatPage() {
       }));
     }
     if (type === "potion" && items) {
-      const updatedCharacter = ItemOnCharacter(character, items);
+      const updatedCharacter = useItemOnCharacter(character, items);
       setCharacter(updatedCharacter);
 
       setDialogues((prev) => [
@@ -198,10 +232,7 @@ export default function CombatPage() {
     setEnemies((prevEnemies) =>
       prevEnemies.map((e, i) =>
         i === enemyIndex
-          ? {
-              ...e,
-              health: Math.max(0, e.health - result.damage),
-            }
+          ? { ...e, health: Math.max(0, e.health - result.damage) }
           : e
       )
     );
@@ -237,13 +268,13 @@ export default function CombatPage() {
       if (!enemy) return;
 
       setTimeout(() => {
-        const result = enemyAIspell(enemy, character);
+        const result = enemyAI(enemy, character);
 
         setDialogues((prev) => [
           ...prev,
           {
-            name: `${enemy.name} utilise ${result.attackName}
-              et inflige ${result.damage} dégâts à ${character.name}.`,
+            name: `${enemy.name} utilise une attaque
+            et inflige ${result.damage} dégâts à ${character.name}.`,
             user: "enemy",
           },
         ]);
@@ -252,12 +283,6 @@ export default function CombatPage() {
           ...prev,
           health: Math.max(0, prev.health - result.damage),
         }));
-
-        setEnemies((prevEnemies) =>
-          prevEnemies.map((e) =>
-            e.name === enemy.name ? { ...e, mana: result.mana } : e
-          )
-        );
 
         if (isDead(result)) {
           setDialogues((prev) => [
@@ -273,7 +298,7 @@ export default function CombatPage() {
         setCurrentEnemyIndex((prev) => prev + 1);
       }, 1000);
     }
-  }, [turn, enemies, currentEnemyIndex, character, loose]);
+  }, [turn, enemies, currentEnemyIndex]);
 
   return (
     <div className="combat-container">
