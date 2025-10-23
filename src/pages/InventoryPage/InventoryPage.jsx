@@ -13,7 +13,9 @@ export default function InventoryPage() {
 
   useEffect(() => {
     const storedCharacter = localStorage.getItem("selectedcharacter");
-    const storedInventory = JSON.parse(localStorage.getItem("inventory") || "[]");
+    const storedInventory = JSON.parse(
+      localStorage.getItem("inventory") || "[]"
+    );
 
     if (storedCharacter) setSelectedCharacter(JSON.parse(storedCharacter));
     setInventory(Array.isArray(storedInventory) ? storedInventory : []);
@@ -23,10 +25,13 @@ export default function InventoryPage() {
     window.location.href = "/quete";
   };
 
-  const handlePurchase = (item) => {
+  const handlePurchase = (items) => {
     if (!selectedCharacter) return;
 
-    const totalCost = item.price * item.quantity;
+    const totalCost = items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
     if (selectedCharacter.fortune < totalCost) {
       alert("Vous n'avez pas assez d'argent !");
       return;
@@ -40,17 +45,15 @@ export default function InventoryPage() {
     localStorage.setItem("selectedcharacter", JSON.stringify(updatedCharacter));
 
     setInventory((prev = []) => {
-      const existing = prev.find((i) => i.id === item.id);
-      let updatedInventory;
-
-      if (existing) {
-        updatedInventory = prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
-        );
-      } else {
-        updatedInventory = [...prev, item];
-      }
-
+      let updatedInventory = [...prev];
+      items.forEach((item) => {
+        const existing = updatedInventory.find((i) => i.id === item.id);
+        if (existing) {
+          existing.quantity += item.quantity;
+        } else {
+          updatedInventory.push(item);
+        }
+      });
       localStorage.setItem("inventory", JSON.stringify(updatedInventory));
       return updatedInventory;
     });
@@ -94,7 +97,9 @@ export default function InventoryPage() {
                 }
                 attack={selectedCharacter.damage}
                 defense={selectedCharacter.defense}
-                spells={selectedCharacter.spell ? [selectedCharacter.spell] : []}
+                spells={
+                  selectedCharacter.spell ? [selectedCharacter.spell] : []
+                }
                 isSelected={selectedCharacter.isSelected}
               />
             </div>
