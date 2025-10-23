@@ -4,19 +4,19 @@
     "name": "Bulbizarre",
     "class": "Graine",
     "picture": "bulbizarre.png",
-    "health": 450,
-    "healthMax": 450,
+    "health": 540,
+    "healthMax": 540,
     "mana": 200,
     "manaMax": 200,
-    "damage": 65,
+    "damage": 130,
     "defense": 65,
     "fortune": 75,
     "spell": {
       "name": "Fouet Lianes",
       "target": "enemy",
       "effect": "damage",
-      "amount": 45,
-      "manaCost": 25
+      "amount": 210,
+      "manaCost": 50
     }
   },
   {
@@ -24,19 +24,19 @@
     "name": "Salamèche",
     "class": "Lézard",
     "picture": "salamèche.png",
-    "health": 100000,
-    "healthMax": 100000,
-    "mana": 2000000,
-    "manaMax": 2000000,
-    "damage": 500000,
-    "defense": 500,
+    "health": 468,
+    "healthMax": 468,
+    "mana": 200,
+    "manaMax": 200,
+    "damage": 100,
+    "defense": 50,
     "fortune": 200,
     "spell": {
       "name": "Flammèche",
       "target": "enemy",
       "effect": "damage",
-      "amount": 100000000000000000,
-      "manaCost": 25
+      "amount": 240,
+      "manaCost": 40
     }
   },
   {
@@ -44,19 +44,19 @@
     "name": "Carapuce",
     "class": "Minitortue",
     "picture": "carapuce.png",
-    "health": 440,
-    "healthMax": 440,
+    "health": 528,
+    "healthMax": 528,
     "mana": 200,
     "manaMax": 200,
-    "damage": 49,
-    "defense": 65,
+    "damage": 98,
+    "defense": 70,
     "fortune": 150,
     "spell": {
       "name": "Pistolet à O",
       "target": "enemy",
       "effect": "damage",
-      "amount": 40,
-      "manaCost": 25
+      "amount": 150,
+      "manaCost": 10
     }
   },
   {
@@ -64,19 +64,19 @@
     "name": "Germignon",
     "class": "Feuille",
     "picture": "germignon.png",
-    "health": 450,
-    "healthMax": 450,
+    "health": 540,
+    "healthMax": 540,
     "mana": 200,
     "manaMax": 200,
-    "damage": 49,
+    "damage": 98,
     "defense": 65,
     "fortune": 250,
     "spell": {
       "name": "Tranch'Herbe",
       "target": "enemy",
       "effect": "damage",
-      "amount": 55,
-      "manaCost": 35
+      "amount": 130,
+      "manaCost": 66
     }
   }
 ]
