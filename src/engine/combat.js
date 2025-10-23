@@ -1,18 +1,13 @@
 export function attack(attacker, defender) {
   const randomCrit = Math.round(Math.random() * (7 - 1) + 1);
-  console.log(randomCrit);
   const damage = Math.max(1, attacker.damage + randomCrit - defender.defense);
-  console.log("attacker damage", attacker.damage);
-  console.log("defender defense", defender.defense);
-  console.log("damage", damage);
   const newHealth = Math.max(0, defender.health - damage);
-  console.log("newHealth", newHealth);
 
   return {
     health: newHealth,
     damage: damage,
+    mana: attacker.mana,
     attackName: "Attaque basique",
-    log: `${attacker.name} utilise  "une attaque" et inflige ${damage} dégâts à ${defender.name}.`,
   };
 }
 
@@ -30,7 +25,6 @@ export function spell(attacker, defender) {
     damage: damage,
     mana: newMana,
     attackName: attacker.spell.name,
-    log: `${attacker.name} utilise ${attacker.spell.name} et inflige ${damage} dégâts à ${defender.name}.`,
   };
 }
 
@@ -53,15 +47,8 @@ export function ItemOnCharacter(character, item) {
   return character;
 }
 
-export function enemyAI(enemy, target) {
-  return attack(enemy, target);
-}
 export function enemyAIspell(enemy, target) {
-  if (
-    enemy.spell &&
-    enemy.mana >= enemy.spell.manaCost &&
-    Math.random() < 0.5
-  ) {
+  if (enemy.spell && enemy.mana && Math.random() < 0.5) {
     return spell(enemy, target);
   } else {
     return attack(enemy, target);

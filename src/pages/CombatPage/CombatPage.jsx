@@ -7,9 +7,9 @@ import DialogueLog from "../../components/CombatPage/DialogueLog";
 import {
   attack,
   isDead,
-  enemyAI,
   spell,
   ItemOnCharacter,
+  enemyAIspell,
 } from "../../engine/combat";
 import { useNavigate } from "react-router-dom";
 
@@ -157,6 +157,7 @@ export default function CombatPage() {
             user: "player",
           },
         ]);
+        setTurn("enemy");
         return;
       }
 
@@ -197,7 +198,10 @@ export default function CombatPage() {
     setEnemies((prevEnemies) =>
       prevEnemies.map((e, i) =>
         i === enemyIndex
-          ? { ...e, health: Math.max(0, e.health - result.damage) }
+          ? {
+              ...e,
+              health: Math.max(0, e.health - result.damage),
+            }
           : e
       )
     );
@@ -233,12 +237,12 @@ export default function CombatPage() {
       if (!enemy) return;
 
       setTimeout(() => {
-        const result = enemyAI(enemy, character);
+        const result = enemyAIspell(enemy, character);
 
         setDialogues((prev) => [
           ...prev,
           {
-            name: `${enemy.name} utilise une attaque
+            name: `${enemy.name} utilise ${result.attackName}
               et inflige ${result.damage} dégâts à ${character.name}.`,
             user: "enemy",
           },
@@ -248,6 +252,12 @@ export default function CombatPage() {
           ...prev,
           health: Math.max(0, prev.health - result.damage),
         }));
+
+        setEnemies((prevEnemies) =>
+          prevEnemies.map((e) =>
+            e.name === enemy.name ? { ...e, mana: result.mana } : e
+          )
+        );
 
         if (isDead(result)) {
           setDialogues((prev) => [

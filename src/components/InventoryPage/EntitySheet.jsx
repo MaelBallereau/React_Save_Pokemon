@@ -32,13 +32,11 @@ export default function EntitySheet({
           <span>{health}</span>
         </div>
 
-        {energy > 0 && (
-          <div className="stat">
-            <strong>⚡ Énergie :</strong>
-            <DynamicBar type="energy" value={energy} max={maxEnergy} />
-            <span>{energy}</span>
-          </div>
-        )}
+        <div className="stat">
+          <strong>⚡ Énergie :</strong>
+          <DynamicBar type="energy" value={energy} max={maxEnergy} />
+          <span>{energy}</span>
+        </div>
 
         <div className="stat">
           <strong>🗡️ Dégâts :</strong> {damage}
