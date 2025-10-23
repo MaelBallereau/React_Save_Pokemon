@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
-import items from "../../data/items.json"; 
+import items from "../../data/items.json";
 
 export default function ShopPanel({ onPurchase }) {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const initialCart = items.map(item => ({ ...item, quantity: 0 }));
+    const initialCart = items.map((item) => ({ ...item, quantity: 0 }));
     setCart(initialCart);
   }, []);
 
   const increment = (id) => {
-    setCart(prev =>
-      prev.map(item =>
+    setCart((prev) =>
+      prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const decrement = (id) => {
-    setCart(prev =>
-      prev.map(item =>
+    setCart((prev) =>
+      prev.map((item) =>
         item.id === id && item.quantity > 0
           ? { ...item, quantity: item.quantity - 1 }
           : item
@@ -27,33 +27,43 @@ export default function ShopPanel({ onPurchase }) {
     );
   };
 
-  const buyItems = (id) => {
-    const item = cart.find(i => i.id === id);
-    if (item.quantity > 0) {
-      if (onPurchase) onPurchase(item.id, item.quantity, item.price);
+  const buyAllItems = () => {
+    const selected = cart.filter((i) => i.quantity > 0);
+    if (selected.length === 0) return;
 
-      setCart(prev =>
-        prev.map(i => (i.id === id ? { ...i, quantity: 0 } : i))
-      );
-    }
+    selected.forEach((item) => {
+      if (onPurchase) onPurchase({ ...item });
+    });
+
+    setCart((prev) => prev.map((i) => ({ ...i, quantity: 0 })));
   };
 
   return (
-    <div className="shop-panel-content">
+    <div className="shop-container">
       <h2>Magasin</h2>
-      {cart.map(item => (
-        <div key={item.id} className="shop-item">
-          <img src={`/img/${item.picture}`} alt={item.name} className="shop-item-img" />
-          <p>{item.name}</p>
-          <p>Prix : {item.price}</p>
-          <div className="quantity-controls">
-            <button onClick={() => decrement(item.id)}>-</button>
-            <span>{item.quantity}</span>
-            <button onClick={() => increment(item.id)}>+</button>
+      <div className="shop-items-grid">
+        {cart.map((item) => (
+          <div key={item.id} className="shop-card">
+            <img
+              src={`/img/${item.picture}`}
+              alt={item.name}
+              className="shop-card-img"
+            />
+            <p>{item.name}</p>
+            <p>Prix : {item.price}</p>
+            <div className="shop-quantity">
+              <button onClick={() => decrement(item.id)}>-</button>
+              <span>{item.quantity}</span>
+              <button onClick={() => increment(item.id)}>+</button>
+            </div>
           </div>
-          <button onClick={() => buyItems(item.id)}>Acheter</button>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div className="shop-footer">
+        <button className="shop-buy-all" onClick={buyAllItems}>
+          Acheter
+        </button>
+      </div>
     </div>
   );
 }

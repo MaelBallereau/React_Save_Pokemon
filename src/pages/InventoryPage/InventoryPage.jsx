@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import "./styles.scss";
 
 import CharacterCard from "../../components/HomePage/CharacterCard.jsx";
@@ -10,16 +9,49 @@ import Button from "../../components/GlobalComponents/Button.jsx";
 
 export default function InventoryPage() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("selectedcharacter");
-    if (storedData) {
-      setSelectedCharacter(JSON.parse(storedData));
-    }
+    const storedCharacter = localStorage.getItem("selectedcharacter");
+    const storedInventory = localStorage.getItem("inventory");
+
+    if (storedCharacter) setSelectedCharacter(JSON.parse(storedCharacter));
+    if (storedInventory) setInventory(JSON.parse(storedInventory));
   }, []);
 
   const handleBack = () => {
     window.location.href = "/quete";
+  };
+
+  const handlePurchase = (item) => {
+    if (!selectedCharacter) return;
+
+    const totalCost = item.price * item.quantity;
+    if (selectedCharacter.fortune < totalCost) {
+      alert("Vous n'avez pas assez d'argent !");
+      return;
+    }
+
+    const updatedCharacter = {
+      ...selectedCharacter,
+      fortune: selectedCharacter.fortune - totalCost,
+    };
+    setSelectedCharacter(updatedCharacter);
+    localStorage.setItem("selectedcharacter", JSON.stringify(updatedCharacter));
+
+    setInventory((prev) => {
+      const existing = prev.find((i) => i.id === item.id);
+      let updatedInventory;
+      if (existing) {
+        updatedInventory = prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+        );
+      } else {
+        updatedInventory = [...prev, item];
+      }
+      localStorage.setItem("inventory", JSON.stringify(updatedInventory));
+      return updatedInventory;
+    });
   };
 
   return (
@@ -30,7 +62,7 @@ export default function InventoryPage() {
 
       {selectedCharacter && (
         <div className="money-display">
-          <img src="/img/money.png" alt="money" className="money-icon" /> 
+          <img src="/img/money.png" alt="money" className="money-icon" />
           <span>{selectedCharacter.fortune}</span>
         </div>
       )}
@@ -54,18 +86,21 @@ export default function InventoryPage() {
                 }
                 attack={selectedCharacter.damage}
                 defense={selectedCharacter.defense}
-                spells={selectedCharacter.spell ? [selectedCharacter.spell] : []}
+                spells={
+                  selectedCharacter.spell ? [selectedCharacter.spell] : []
+                }
                 isSelected={selectedCharacter.isSelected}
               />
             </div>
           </div>
         )}
 
-        <InventoryList className="inventory-list" />
-        <ShopPanel className="shop-panel" />
+        <InventoryList items={inventory} className="inventory-list" />
+        <ShopPanel onPurchase={handlePurchase} className="shop-panel" />
       </div>
 
-      <Button onClick={handleBack} text="Retour" />
+      <Button onClick={handleBack} text="Retour"/>
+
     </section>
   );
 }
