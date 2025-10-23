@@ -31,12 +31,15 @@ export default function EntitySheet({
           <DynamicBar type="health" value={health} max={maxHealth} />
           <span>{health}</span>
         </div>
-
-        <div className="stat">
-          <strong>⚡ Énergie :</strong>
-          <DynamicBar type="energy" value={energy} max={maxEnergy} />
-          <span>{energy}</span>
-        </div>
+        {maxEnergy ? (
+          <div className="stat">
+            <strong>⚡ Énergie :</strong>
+            <DynamicBar type="energy" value={energy} max={maxEnergy} />
+            <span>{energy}</span>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className="stat">
           <strong>🗡️ Dégâts :</strong> {damage}

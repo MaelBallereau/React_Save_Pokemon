@@ -12,11 +12,7 @@ export function attack(attacker, defender) {
 }
 
 export function spell(attacker, defender) {
-  const randomCrit = Math.round(Math.random() * (7 - 1) + 1);
-  const damage = Math.max(
-    1,
-    attacker.spell.amount + randomCrit - defender.defense
-  );
+  const damage = Math.max(1, attacker.spell.amount * 1.5 - defender.defense);
   const newMana = Math.max(0, attacker.mana - attacker.spell.manaCost);
   const newHealth = Math.max(0, defender.health - damage);
 
