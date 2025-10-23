@@ -24,7 +24,11 @@
     background: transparent;
   }
 }
-
+.button-save {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 .button-HomePage {
   display: flex;
   flex-direction: column;

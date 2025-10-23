@@ -6,14 +6,15 @@ export default function ButtonHomePage({
   handleContinue,
   errorMessage,
 }) {
-  const hasQuests = !!localStorage.getItem("quests"); 
+  const hasQuests = localStorage.getItem("idQuest");
+  console.log(hasQuests);
   return (
     <div className="button-HomePage">
       {hasQuests ? (
-        <>
-          <Button onClick={handleReset} text="Réinitialiser" />
+        <div className="button-save">
           <Button onClick={handleContinue} text="Continuer" />
-        </>
+          <Button onClick={handleReset} text="Réinitialiser" />
+        </div>
       ) : (
         <Button onClick={handleStart} text="Commencer" />
       )}
