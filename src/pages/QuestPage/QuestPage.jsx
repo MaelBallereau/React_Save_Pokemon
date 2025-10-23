@@ -18,45 +18,6 @@ const QuestPage = () => {
 
   let id = JSON.parse(localStorage.getItem("idQuest") ?? "1");
 
-  const { setInventory } = useGameContext();
-
-  useEffect(() => {
-    setInventory([
-      {
-        id: 1,
-        name: "Potion",
-        picture: "potion.png",
-        target: "health",
-        amount: 20,
-        price: 5,
-      },
-      {
-        id: 2,
-        name: "Huile",
-        picture: "huile.png",
-        target: "mana",
-        amount: 10,
-        price: 5,
-      },
-      {
-        id: 3,
-        name: "Super Potion",
-        picture: "super-potion.png",
-        target: "health",
-        amount: 100,
-        price: 25,
-      },
-      {
-        id: 4,
-        name: "Huile max",
-        picture: "huile.png",
-        target: "mana",
-        amount: 200,
-        price: 50,
-      },
-    ]);
-  }, [setInventory]);
-
   const questIndex = id - 1;
 
   useEffect(() => {
@@ -84,11 +45,13 @@ const QuestPage = () => {
           description={Quest[questIndex]?.description}
           objective={Quest[questIndex]?.objective}
         />
-        <div className="btn">
-          <Button onClick={handleInventaire} text="Inventaire" />
-        </div>
-        <div className="btn">
-          <Button onClick={handleCombat} text="Combat" />
+        <div className="btn-container">
+          <div className="btn">
+            <Button onClick={handleInventaire} text="Inventaire" />
+          </div>
+          <div className="btn">
+            <Button onClick={handleCombat} text="Combat" />
+          </div>
         </div>
       </div>
     </>
