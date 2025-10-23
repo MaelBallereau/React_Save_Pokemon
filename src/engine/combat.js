@@ -1,34 +1,3 @@
-// const salamèche = {
-//   id: 2,
-//   name: "Salamèche",
-//   class: "Lézard",
-//   picture: "salamèche.png",
-//   health: 390,
-//   healthMax: 390,
-//   mana: 200,
-//   manaMax: 200,
-//   damage: 50,
-//   defense: 50,
-//   fortune: 200,
-//   spell: {
-//     name: "Flammèche",
-//     target: "enemy",
-//     effect: "damage",
-//     amount: 40,
-//     manaCost: 25,
-//   },
-// };
-// const ennemies = {
-//   name: "Rattata",
-//   picture: "rattata.png",
-//   health: 300,
-//   mana: 0,
-//   damage: 60,
-//   defense: 35,
-// };
-
-// enemyAI(ennemies, salamèche);
-// console.log(enemyAI(ennemies, salamèche));
 
 export function attack(attacker, defender) {
   const randomCrit = Math.round(Math.random() * (7 - 1) + 1);
@@ -44,8 +13,7 @@ export function attack(attacker, defender) {
     health: newHealth,
     damage: damage,
     attackName: "Attaque basique",
-    log: `${attacker.name} utilise  "une attaque"
-    } et inflige ${damage} dégâts à ${defender.name}.`,
+    log: `${attacker.name} utilise  "une attaque" et inflige ${damage} dégâts à ${defender.name}.`,
   };
 }
 
@@ -71,7 +39,7 @@ export function isDead(entity) {
   return entity.health <= 0;
 }
 
-export function useItemOnCharacter(character, item) {
+export function ItemOnCharacter(character, item) {
   if (item.target === "health") {
     const healed = Math.min(
       character.maxHealth,
