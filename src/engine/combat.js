@@ -1,4 +1,3 @@
-
 export function attack(attacker, defender) {
   const randomCrit = Math.round(Math.random() * (7 - 1) + 1);
   console.log(randomCrit);
@@ -58,7 +57,11 @@ export function enemyAI(enemy, target) {
   return attack(enemy, target);
 }
 export function enemyAIspell(enemy, target) {
-  if (enemy.spell && enemy.mana >= enemy.spell.manaCost) {
+  if (
+    enemy.spell &&
+    enemy.mana >= enemy.spell.manaCost &&
+    Math.random() < 0.5
+  ) {
     return spell(enemy, target);
   } else {
     return attack(enemy, target);
