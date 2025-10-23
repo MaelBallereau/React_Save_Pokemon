@@ -13,10 +13,10 @@ export default function InventoryPage() {
 
   useEffect(() => {
     const storedCharacter = localStorage.getItem("selectedcharacter");
-    const storedInventory = localStorage.getItem("inventory");
+    const storedInventory = JSON.parse(localStorage.getItem("inventory") || "[]");
 
     if (storedCharacter) setSelectedCharacter(JSON.parse(storedCharacter));
-    if (storedInventory) setInventory(JSON.parse(storedInventory));
+    setInventory(Array.isArray(storedInventory) ? storedInventory : []);
   }, []);
 
   const handleBack = () => {
@@ -39,9 +39,10 @@ export default function InventoryPage() {
     setSelectedCharacter(updatedCharacter);
     localStorage.setItem("selectedcharacter", JSON.stringify(updatedCharacter));
 
-    setInventory((prev) => {
+    setInventory((prev = []) => {
       const existing = prev.find((i) => i.id === item.id);
       let updatedInventory;
+
       if (existing) {
         updatedInventory = prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
@@ -49,6 +50,7 @@ export default function InventoryPage() {
       } else {
         updatedInventory = [...prev, item];
       }
+
       localStorage.setItem("inventory", JSON.stringify(updatedInventory));
       return updatedInventory;
     });
@@ -92,9 +94,7 @@ export default function InventoryPage() {
                 }
                 attack={selectedCharacter.damage}
                 defense={selectedCharacter.defense}
-                spells={
-                  selectedCharacter.spell ? [selectedCharacter.spell] : []
-                }
+                spells={selectedCharacter.spell ? [selectedCharacter.spell] : []}
                 isSelected={selectedCharacter.isSelected}
               />
             </div>
@@ -104,6 +104,7 @@ export default function InventoryPage() {
         <InventoryList items={inventory} className="inventory-list" />
         <ShopPanel onPurchase={handlePurchase} className="shop-panel" />
       </div>
+
       <div className="backbutton">
         <Button onClick={handleBack} text="Retour" />
       </div>
