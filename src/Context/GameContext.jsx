@@ -12,7 +12,7 @@ export const GameProvider = ({ children }) => {
   );
 
   const [inventory, setInventory] = useState(
-    JSON.parse(localStorage.getItem("items"))
+    JSON.parse(localStorage.getItem("inventory"))
   );
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const GameProvider = ({ children }) => {
   }, [selectedCharacter]);
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(inventory));
+    localStorage.setItem("inventory", JSON.stringify(inventory));
   }, [inventory]);
 
   const setCharacter = (characterData) => {
@@ -41,7 +41,7 @@ export const GameProvider = ({ children }) => {
 
   const resetGame = () => {
     setSelectedCharacter(null);
-    setInventory([]);
+    setInventory(null);
     clearGame();
   };
 

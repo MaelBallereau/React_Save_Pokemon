@@ -7,7 +7,7 @@ export default function ButtonHomePage({
   errorMessage,
 }) {
   const hasQuests = localStorage.getItem("idQuest");
-  console.log(hasQuests);
+
   return (
     <div className="button-HomePage">
       {hasQuests ? (

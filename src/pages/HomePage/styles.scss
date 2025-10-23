@@ -22,6 +22,9 @@
     gap: 2rem;
     padding: 2rem;
     background: transparent;
+    &.disabled-selected {
+      pointer-events: none;
+    }
   }
 }
 .button-save {

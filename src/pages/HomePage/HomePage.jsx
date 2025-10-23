@@ -6,13 +6,17 @@ import { useGameContext } from "../../Context/GameContext";
 import TitleHomePages from "../../components/HomePage/TitleHomePages";
 import ButtonHomePage from "../../components/HomePage/ButtonHomePage";
 
-const HomePage = () => {
+export default function HomePage() {
   const { selectedCharacter, setCharacter, resetGame } = useGameContext();
   const [errorMessage, setErrorMessage] = useState(null);
+  const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    if (selectedCharacter !== null) {
-      setErrorMessage(null);
+    const questid = localStorage.getItem("idQuest");
+    if (questid) {
+      setLocked(true);
+    } else {
+      setLocked(false);
     }
   }, [selectedCharacter]);
 
@@ -39,7 +43,7 @@ const HomePage = () => {
   return (
     <section className="section-HomePage">
       <TitleHomePages />
-      <div className="content-HomePage">
+      <div className={`content-HomePage ${locked ? "disabled-selected" : ""}`}>
         {characters.map((character) => (
           <CharacterCard
             key={character.id}
@@ -67,6 +71,4 @@ const HomePage = () => {
       />
     </section>
   );
-};
-
-export default HomePage;
+}
