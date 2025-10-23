@@ -110,7 +110,7 @@ export default function CombatPage() {
     }
   };
 
-  const items = JSON.parse(localStorage.getItem("items") || "[]");
+  const inventory = JSON.parse(localStorage.getItem("inventory") || "[]");
 
   const handleObject = (item) => {
     if (turn !== "player") return;
@@ -168,16 +168,16 @@ export default function CombatPage() {
         mana: result.mana,
       }));
     }
-    if (type === "potion" && items) {
-      const updatedCharacter = ItemOnCharacter(character, items);
+    if (type === "potion" && inventory) {
+      const updatedCharacter = ItemOnCharacter(character, inventory);
       setCharacter(updatedCharacter);
 
       setDialogues((prev) => [
         ...prev,
         {
-          name: `${character.name} utilise ${items.name} et récupère ${
-            items.amount
-          } ${items.target === "health" ? "points de vie" : "mana"} !`,
+          name: `${character.name} utilise ${inventory.name} et récupère ${
+            inventory.amount
+          } ${inventory.target === "health" ? "points de vie" : "mana"} !`,
           user: "player",
         },
       ]);
@@ -289,7 +289,7 @@ export default function CombatPage() {
           maxEnergy={character?.maxMana ?? 0}
           damage={character?.damage ?? 0}
           defense={character?.defense ?? 0}
-          objects={items}
+          objects={inventory}
           onClick={handleObject}
         />
         <div className="section-btn-combat">
