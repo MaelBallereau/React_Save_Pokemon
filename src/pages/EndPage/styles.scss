@@ -68,3 +68,44 @@ button {
     opacity: 1;
   }
 }
+.end-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  gap: 2rem;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.end-pikachu {
+  width: 180px;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 10px #ffeb3b);
+  animation: float 3s ease-in-out infinite;
+}
+
+.end-story {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  animation: fadeInUp 1.4s ease-out;
+  max-width: 90%;
+}
+
+/* Animation de flottement de Pikachu */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
