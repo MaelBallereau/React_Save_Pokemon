@@ -11,6 +11,7 @@ export default function VictoryPage() {
   const idQuest = localStorage.getItem("idQuest") - 1;
   const currentQuest = Quest.find((q) => q.id === idQuest);
   const rewardGold = currentQuest?.reward?.gold;
+  const clueText = currentQuest?.clue || "Aucune information trouvée...";
 
   useEffect(() => {
     if (rewardGold) {
@@ -45,7 +46,7 @@ export default function VictoryPage() {
       <div className="card">
         <h1 className="pokemon-title">✨ Victoire ! ✨</h1>
         <p className="subtitle">
-          Tu as vaincu ton adversaire à la quête {idQuest} !
+          {clueText}
         </p>
         <div className="pokeball">
           <img src="/img/pokeball.png" alt="pokeball" />

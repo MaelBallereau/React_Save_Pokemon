@@ -17,6 +17,9 @@
   padding: 3rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   animation: fade-in 1s ease-out;
+  max-width: 900px; /* largeur max de la carte */
+  width: 90%; /* prend 90% de la largeur sur petits écrans */
+  margin: 0 auto; /* centre la carte horizontalement */
 }
 
 .pokemon-title {
