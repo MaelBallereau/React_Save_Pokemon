@@ -20,7 +20,7 @@ export default function CombatPage() {
   const { resetGame } = useGameContext();
 
   const storedCharacter = JSON.parse(localStorage.getItem("selectedcharacter"));
-
+  const [inventory, setInventory] = useState([]);
   const [character, setCharacter] = useState({
     ...storedCharacter,
     maxHealth: storedCharacter.healthMax,
@@ -119,14 +119,24 @@ export default function CombatPage() {
     }
   };
 
-  const inventory = JSON.parse(localStorage.getItem("inventory") || "[]");
+  useEffect(() => {
+    const inventory = JSON.parse(localStorage.getItem("inventory") || "[]");
+    setInventory(inventory);
+  }, []);
 
   const handleObject = (item) => {
     if (turn !== "player") return;
 
     const updatedCharacter = ItemOnCharacter(character, item);
     setCharacter(updatedCharacter);
-
+    const updatedInventory = inventory.map((i) => {
+      if (i.id === item.id) {
+        return { ...i, quantity: i.quantity - 1 };
+      }
+      return i;
+    });
+    setInventory(updatedInventory);
+    localStorage.setItem("inventory", JSON.stringify(updatedInventory));
     setDialogues((prev) => [
       ...prev,
       {
@@ -134,6 +144,7 @@ export default function CombatPage() {
           item.amount
         } ${item.target === "health" ? "points de vie" : "points de mana"} !`,
         user: "player",
+        item: item.quantity - 1,
       },
     ]);
 

@@ -1,4 +1,3 @@
-
 import DynamicBar from "../GlobalComponents/DynamicBar";
 
 export default function EntitySheet({
@@ -53,12 +52,16 @@ export default function EntitySheet({
 
       {safeObjects.length > 0 && (
         <div className="object">
-          {safeObjects.map((obj) => (
+          {safeObjects.map((obj) => obj.quantity > 0 && (
             <div className="item" onClick={() => onClick(obj)} key={obj.id}>
               <img src={`/img/${obj.picture}`} alt={obj.name} />
               <p>{obj.name}</p>
               <div className="details">
-                <span>Amount: {obj.amount}</span>
+                <span>
+                  Montant de : {obj.amount}{" "}
+                  {obj.target === "health" ? "points de vie" : "points de mana"}
+                </span>
+                <span>Quantité: {obj.quantity}</span>
               </div>
             </div>
           ))}

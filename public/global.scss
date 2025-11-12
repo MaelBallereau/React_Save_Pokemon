@@ -438,9 +438,18 @@ $object-bg: #2a2a3a;
       .details {
         font-size: 0.85rem;
         color: $text-secondary;
+        &::before {
+          content: "";
+          display: block;
+          height: 1px;
+          width: 100%;
+          background-color: $text-secondary;
+          margin-bottom: 10px;
+        }
 
         span {
           display: block;
+          margin-top: 8px;
         }
       }
     }
