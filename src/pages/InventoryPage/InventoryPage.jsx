@@ -10,6 +10,7 @@ import Button from "../../components/GlobalComponents/Button.jsx";
 export default function InventoryPage() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [inventory, setInventory] = useState([]);
+  const [popupMessage, setPopupMessage] = useState(null);
 
   useEffect(() => {
     const storedCharacter = localStorage.getItem("selectedcharacter");
@@ -20,6 +21,11 @@ export default function InventoryPage() {
     if (storedCharacter) setSelectedCharacter(JSON.parse(storedCharacter));
     setInventory(Array.isArray(storedInventory) ? storedInventory : []);
   }, []);
+
+  const showPopup = (message, duration = 2000) => {
+    setPopupMessage(message);
+    setTimeout(() => setPopupMessage(null), duration);
+  };
 
   const handleBack = () => {
     window.location.href = "/quete";
@@ -33,7 +39,7 @@ export default function InventoryPage() {
       0
     );
     if (selectedCharacter.fortune < totalCost) {
-      alert("Vous n'avez pas assez d'argent !");
+      showPopup("Vous n'avez pas assez d'argent !");
       return;
     }
 
@@ -57,10 +63,14 @@ export default function InventoryPage() {
       localStorage.setItem("inventory", JSON.stringify(updatedInventory));
       return updatedInventory;
     });
+
+    showPopup("Achat effectué avec succès !");
   };
 
   return (
     <section className="inventory-page">
+      {popupMessage && <div className="popup-message">{popupMessage}</div>}
+
       <div className="titles">
         <h1>Inventaire</h1>
       </div>
