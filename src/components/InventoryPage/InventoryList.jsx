@@ -3,7 +3,7 @@ export default function InventoryList({ items }) {
     <div className="inventory-card">
       <h2>Inventaire</h2>
       <div className="inventory-content">
-        {items.length === 0 ? (
+        {!items?.length ? (
           <p className="empty">Aucun objet acheté... (espèce de ratata)</p>
         ) : (
           <ul className="inventory-list">
@@ -15,7 +15,7 @@ export default function InventoryList({ items }) {
                   className="inventory-item-img"
                 />
                 <span className="item-name">{item.name}</span>
-                <span className="item-qty">× {item.quantity}</span>
+                <span className="item-qty">x {item.quantity}</span>
               </li>
             ))}
           </ul>

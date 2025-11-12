@@ -31,9 +31,7 @@ export default function ShopPanel({ onPurchase }) {
     const selected = cart.filter((i) => i.quantity > 0);
     if (selected.length === 0) return;
 
-    selected.forEach((item) => {
-      if (onPurchase) onPurchase({ ...item });
-    });
+    if (onPurchase) onPurchase(selected);
 
     setCart((prev) => prev.map((i) => ({ ...i, quantity: 0 })));
   };
