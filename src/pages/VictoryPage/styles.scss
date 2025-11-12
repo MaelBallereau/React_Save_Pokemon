@@ -73,3 +73,44 @@
   }
 }
 
+.gold-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 215, 0, 0.95);
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 2px solid #ffde00;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: popup-slide 0.5s ease-out, fade-out 0.5s ease-out 2.5s forwards;
+  z-index: 9999;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@keyframes popup-slide {
+  from {
+    transform: translateX(-50%) translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
