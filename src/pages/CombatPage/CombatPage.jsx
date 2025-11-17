@@ -2,7 +2,7 @@ import "./styles.scss";
 import EntitySheet from "../../components/InventoryPage/EntitySheet";
 import Creatures from "../../data/creatures.json";
 import Combats from "../../data/combats.json";
-import { useGameContext } from "../../Context/GameContext";
+import { useGameContext } from "../../context/GameContext";
 import { useState, useEffect, useRef, useCallback } from "react";
 import DialogueLog from "../../components/CombatPage/DialogueLog";
 import {
@@ -96,7 +96,6 @@ export default function CombatPage() {
     if (!canFlee) return;
 
     const fleeSuccess = Math.random() < 0.5;
-    console.log(fleeSuccess);
     if (fleeSuccess) {
       setDialogues((prev) => [
         ...prev,

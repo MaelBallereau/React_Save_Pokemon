@@ -1,0 +1,15 @@
+@mixin ScreenImage() {
+  background-image: url("/img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@mixin TextTitle($size, $color, $weight,$letterspace , $margin , $transform : null) {
+  text-align: center;
+  font-size: $size;
+  font-weight: $weight;
+  margin-top: $margin;
+  margin-bottom: $margin;
+  text-transform: $transform;
+  letter-spacing: $letterspace;
+}

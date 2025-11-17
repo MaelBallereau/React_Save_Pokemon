@@ -5,7 +5,7 @@ import QuestPage from "./pages/QuestPage/QuestPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import FailurePage from "./pages/FailurePage/FailurePage";
 import NotFoundpage from "./pages/NotFoundPage/NotFoundPage";
-import { GameProvider } from "./Context/GameContext";
+import { GameProvider } from "./context/GameContext";
 import CombatPage from "./pages/CombatPage/CombatPage";
 import EndPage from "./pages/EndPage/EndPage";
 import VictoryPage from "./pages/VictoryPage/VictoryPage";

@@ -24,7 +24,7 @@
     "id": 2,
     "name": "Salamèche",
     "class": "Lézard",
-    "picture": "salamèche.png",
+    "picture": "salameche.png",
     "video": "salameche.mp4",
     "health": 468,
     "healthMax": 468,
